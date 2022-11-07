@@ -14,6 +14,8 @@ import colors from '../../constants/colors';
 import Profile from '../../screens/profile';
 import Devices from '../../screens/admin/devices';
 import AddDevice from '../../screens/admin/devices/add-device';
+import ChangePassword from '../../screens/profile/change-password';
+import UpdateUserInfo from '../../screens/profile/update-user-info';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -107,8 +109,9 @@ const HomeTabs = ({navigation}) => {
         component={Profile}
         options={{
           headerShown: true,
-          headerTitle: 'Profile',
-          headerTintColor: colors.RED,
+          headerTitle: 'My Profile',
+          headerTintColor: colors.WHITE,
+          headerStyle: {backgroundColor: colors.RED},
           tabBarIcon: ({focused, color, size}) => {
             return <Icon name="person" color={color} size={30} />;
           },
@@ -166,6 +169,25 @@ const LoggedIn = () => {
             headerStyle: {backgroundColor: colors.RED},
           }}
         />
+
+        <Stack.Screen
+          name="ChangePassword"
+          component={ChangePassword}
+          options={{
+            title: 'Change password',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.RED},
+          }}
+        />
+        <Stack.Screen
+          name="UpdateUserInfo"
+          component={UpdateUserInfo}
+          options={{
+            title: 'Update user information',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.RED},
+          }}
+        />
         {/*  <Stack.Screen
           name="EditProduct"
           component={EditProduct}
@@ -179,22 +201,6 @@ const LoggedIn = () => {
           options={{
             title: '',
             headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="ChangePassword"
-          component={ChangePassword}
-          options={{
-            title: 'Change password',
-          }}
-        />
-        <Stack.Screen
-          name="ChangeInfo"
-          component={ChangeInfo}
-          options={{
-            title: 'Update user information',
-            headerTintColor: colors.WHITE,
-            headerStyle: {backgroundColor: colors.RED},
           }}
         /> */}
       </Stack.Navigator>

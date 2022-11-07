@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import colors from '../../../../constants/colors';
 const commonStyles = {
   backgroundColor: colors.WHITE,
@@ -17,17 +17,22 @@ function AdminMenuItem({item, navigation}) {
           ? {...commonStyles, marginRight: 10}
           : {...commonStyles, marginLeft: 10}
       }>
-      <Text style={{color: colors.BLACK}}>{item.item.title}</Text>
-      <Text
-        style={{
-          color: colors.RED,
-          fontWeight: '500',
-          fontSize: 25,
-          textAlign: 'center',
-          marginTop: 10,
-        }}>
-        {item.item.size}
-      </Text>
+      <TouchableOpacity
+        onPress={() =>
+          item.item.routeName !== '' && navigation.navigate(item.item.routeName)
+        }>
+        <Text style={{color: colors.BLACK}}>{item.item.title}</Text>
+        <Text
+          style={{
+            color: colors.RED,
+            fontWeight: '500',
+            fontSize: 25,
+            textAlign: 'center',
+            marginTop: 10,
+          }}>
+          {item.item.size}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }

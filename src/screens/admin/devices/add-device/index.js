@@ -59,7 +59,6 @@ function AddDevice({navigation}) {
             <TextInput
               style={{...commonInput}}
               placeholder="Enter device name"
-              onChangeText={text => setEmail(text)}
               value={deviceName}
               onChangeText={text => setDeviceName(text)}
             />

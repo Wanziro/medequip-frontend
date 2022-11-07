@@ -6,31 +6,32 @@ import Icon from 'react-native-vector-icons/dist/Ionicons';
 import colors from '../../../constants/colors';
 import AdminMenuItem from './menu-item';
 
-const adminMenuList = [
-  {
-    title: 'Users',
-    size: 0,
-    routeName: '',
-  },
-  {
-    title: 'Devices',
-    size: 0,
-    routeName: '',
-  },
-  {
-    title: 'Spare parts',
-    size: 0,
-    routeName: '',
-  },
-  {
-    title: 'Tickets',
-    size: 0,
-    routeName: '',
-  },
-];
-
 function Home({navigation}) {
   const {role, fullName} = useSelector(state => state.user);
+  const {devices} = useSelector(state => state.devices);
+
+  const adminMenuList = [
+    {
+      title: 'Users',
+      size: 0,
+      routeName: '',
+    },
+    {
+      title: 'Devices',
+      size: devices.length,
+      routeName: 'Devices',
+    },
+    {
+      title: 'Spare parts',
+      size: 0,
+      routeName: '',
+    },
+    {
+      title: 'Tickets',
+      size: 0,
+      routeName: '',
+    },
+  ];
 
   return (
     <View style={{backgroundColor: colors.RED, flex: 1}}>

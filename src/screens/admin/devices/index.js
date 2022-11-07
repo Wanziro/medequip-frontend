@@ -6,27 +6,18 @@ import Loader from './Loader';
 import {errorHandler, toastMessage} from '../../../helpers';
 import Axios from 'axios';
 import {backendUrl} from '../../../constants/app';
-import {setAddDevices, setLoadingDevices} from '../../../actions/devices';
+import {
+  fetchDevices,
+  setAddDevices,
+  setLoadingDevices,
+} from '../../../actions/devices';
 import DeviceItem from './device-item';
 
 function Devices() {
   const dispatch = useDispatch();
   const {devices, isLoading} = useSelector(state => state.devices);
-  const {token} = useSelector(state => state.user);
-  const fetchDevices = () => {
-    dispatch(setLoadingDevices(true));
-    Axios.get(backendUrl + '/devices/?token=' + token)
-      .then(res => {
-        dispatch(setLoadingDevices(false));
-        dispatch(setAddDevices(res.data.devices));
-      })
-      .catch(error => {
-        errorHandler(error);
-        dispatch(setLoadingDevices(false));
-      });
-  };
   useEffect(() => {
-    fetchDevices();
+    dispatch(fetchDevices());
   }, []);
   return (
     <>
