@@ -57,7 +57,7 @@ function Home({navigation}) {
         </View>
         <View style={{marginVertical: 10}}>
           <Text style={{color: colors.WHITE, fontSize: 18}}>
-            Medequip repair administration
+            Medequip Repair App Administration
           </Text>
         </View>
       </View>
