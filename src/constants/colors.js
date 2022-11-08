@@ -25,4 +25,16 @@ module.exports = {
   BROWN: '#c4865a',
   BG_GRAY: '#f2f2f2',
   TEXT_COLOR: '#555555',
+
+  randomColors: [
+    'red',
+    'blue',
+    'green',
+    'cyan',
+    'black',
+    'yellow',
+    'lightblue',
+    'orange',
+    'purple',
+  ],
 };

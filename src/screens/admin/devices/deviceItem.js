@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Alert, Pressable, Text, View} from 'react-native';
+import {Alert, Pressable, Text, View, TouchableOpacity} from 'react-native';
 import {flexSpace} from '../../../constants/styles';
 import Icon from 'react-native-vector-icons/dist/Entypo';
 import Icon2 from 'react-native-vector-icons/dist/Octicons';
@@ -12,7 +12,7 @@ import {useDispatch} from 'react-redux';
 import {fetchDevices} from '../../../actions/devices';
 import {useSelector} from 'react-redux';
 
-function DeviceItem({item}) {
+function DeviceItem({item, navigation}) {
   const dispatch = useDispatch();
   const {token} = useSelector(state => state.user);
   const [isLoading, setIsLoading] = useState(false);
@@ -58,17 +58,29 @@ function DeviceItem({item}) {
           borderRadius: 5,
           marginBottom: 10,
         }}>
-        <Pressable onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('TroubleShootingCategories', {
+              deviceId: item._id,
+            });
+          }}>
           <Icon name="clapperboard" size={30} color={colors.RED} />
-        </Pressable>
-        <Pressable style={{flex: 1, paddingHorizontal: 10}} onPress={() => {}}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{flex: 1, paddingHorizontal: 10}}
+          onPress={() => {
+            navigation.navigate('TroubleShootingCategories', {
+              deviceId: item._id,
+              deviceName: item.name,
+            });
+          }}>
           <View>
             <Text style={{color: colors.BLACK, fontSize: 20}}>{item.name}</Text>
             <Text>
               Date Created: {new Date(item.createdAt).toLocaleString()}
             </Text>
           </View>
-        </Pressable>
+        </TouchableOpacity>
         <Pressable onPress={() => handleDelete()}>
           <View>
             <Icon2 name="trash" size={30} />

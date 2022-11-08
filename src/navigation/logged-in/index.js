@@ -16,6 +16,8 @@ import Devices from '../../screens/admin/devices';
 import AddDevice from '../../screens/admin/devices/add-device';
 import ChangePassword from '../../screens/profile/change-password';
 import UpdateUserInfo from '../../screens/profile/update-user-info';
+import TroubleShootingCategories from '../../screens/admin/devices/troubleshooting-categories';
+import AddTroubleShootingCategory from '../../screens/admin/devices/add-troubleshooting-category';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -184,6 +186,37 @@ const LoggedIn = () => {
           component={UpdateUserInfo}
           options={{
             title: 'Update user information',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.RED},
+          }}
+        />
+        <Stack.Screen
+          name="TroubleShootingCategories"
+          component={TroubleShootingCategories}
+          options={({route, navigation}) => ({
+            headerRight: () => (
+              <Pressable
+                onPress={() =>
+                  navigation.navigate('AddTroubleShootingCategory', {
+                    deviceName: route.params.deviceName,
+                    deviceId: route.params.deviceId,
+                  })
+                }>
+                <View style={{paddingRight: 15}}>
+                  <Icon3 name="plus" color={colors.WHITE} size={30} />
+                </View>
+              </Pressable>
+            ),
+            title: 'Devices / ' + route.params.deviceName,
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.RED},
+          })}
+        />
+        <Stack.Screen
+          name="AddTroubleShootingCategory"
+          component={AddTroubleShootingCategory}
+          options={{
+            title: 'New troubleshooting category',
             headerTintColor: colors.WHITE,
             headerStyle: {backgroundColor: colors.RED},
           }}
