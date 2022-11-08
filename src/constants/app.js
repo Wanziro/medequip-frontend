@@ -1,4 +1,4 @@
-const APP_MODE = 'dev'; //production or dev
+const APP_MODE = 'production'; //production or dev
 const CONFIG = {
   dev: {
     // backendUrl: 'http://192.168.43.3:8080/api',
@@ -8,7 +8,7 @@ const CONFIG = {
     imageUrl: 'http://172.31.34.64/RN/cyizere/supplier/uploads/',
   },
   production: {
-    // backendUrl: 'https://cyizere.rw/api/supplier',
+    backendUrl: 'https://medequip-backend.herokuapp.com/',
     // imageUrl: 'https://cyizere.rw/uploads/products/',
   },
 };
