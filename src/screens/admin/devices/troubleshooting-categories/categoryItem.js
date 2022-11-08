@@ -19,7 +19,7 @@ const commonStyles = {
   padding: 10,
   borderLeftWidth: 5,
 };
-function CategoryItem({item, deviceName, setIsLoading, navigation}) {
+function CategoryItem({item, deviceName, setIsLoading, navigation, issues}) {
   const dispatch = useDispatch();
   const {token} = useSelector(state => state.user);
   const [borderColor, setBorderColor] = useState('');
@@ -91,7 +91,14 @@ function CategoryItem({item, deviceName, setIsLoading, navigation}) {
             fontSize: 16,
             marginTop: 10,
           }}>
-          0 Items
+          {
+            issues.filter(
+              i =>
+                i.deviceId === item.item.deviceId &&
+                i.categoryId === item.item._id,
+            ).length
+          }{' '}
+          Issues
         </Text>
       </Pressable>
     </View>

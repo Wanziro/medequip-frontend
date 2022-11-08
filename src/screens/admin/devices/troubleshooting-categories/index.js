@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, FlatList, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {fetchDeviceIssues} from '../../../../actions/deviceIssues';
 import {fetchTroubleshootingcategories} from '../../../../actions/troubleShootingCategories';
 import colors from '../../../../constants/colors';
 import FullPageLoader from '../../../full-page-loader';
@@ -29,9 +30,11 @@ function TroubleShootingCategories({navigation, route}) {
   const {isLoading, categories} = useSelector(
     state => state.troubleShootingCategories,
   );
+  const {issues} = useSelector(state => state.deviceIssues);
 
   useEffect(() => {
     dispatch(fetchTroubleshootingcategories());
+    dispatch(fetchDeviceIssues());
   }, []);
 
   return (
@@ -64,6 +67,7 @@ function TroubleShootingCategories({navigation, route}) {
                 navigation={navigation}
                 setIsLoading={setIsLoadingData}
                 deviceName={deviceName}
+                issues={issues}
               />
             )}
             numColumns={2}
