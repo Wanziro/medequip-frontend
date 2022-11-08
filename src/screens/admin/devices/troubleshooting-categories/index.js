@@ -63,6 +63,7 @@ function TroubleShootingCategories({navigation, route}) {
                 item={item}
                 navigation={navigation}
                 setIsLoading={setIsLoadingData}
+                deviceName={deviceName}
               />
             )}
             numColumns={2}

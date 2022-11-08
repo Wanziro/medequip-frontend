@@ -18,6 +18,9 @@ import ChangePassword from '../../screens/profile/change-password';
 import UpdateUserInfo from '../../screens/profile/update-user-info';
 import TroubleShootingCategories from '../../screens/admin/devices/troubleshooting-categories';
 import AddTroubleShootingCategory from '../../screens/admin/devices/add-troubleshooting-category';
+import DeviceIssues from '../../screens/admin/devices/device-issues';
+import {flexSpace} from '../../constants/styles';
+import AddDeviceIssue from '../../screens/admin/devices/add-device-issue';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -217,6 +220,50 @@ const LoggedIn = () => {
           component={AddTroubleShootingCategory}
           options={{
             title: 'New troubleshooting category',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.RED},
+          }}
+        />
+
+        <Stack.Screen
+          name="DeviceIssues"
+          component={DeviceIssues}
+          options={({route, navigation}) => ({
+            headerRight: () => (
+              <View style={{...flexSpace}}>
+                <Pressable
+                  style={{marginRight: 10}}
+                  onPress={() => navigation.navigate('Home')}>
+                  <View style={{paddingRight: 15}}>
+                    <Icon name="home" color={colors.WHITE} size={30} />
+                  </View>
+                </Pressable>
+                <Pressable
+                  onPress={() =>
+                    navigation.navigate('AddDeviceIssue', {
+                      deviceName: route.params.deviceName,
+                      deviceId: route.params.deviceId,
+                      categoryName: route.params.categoryName,
+                      categoryId: route.params.categoryId,
+                    })
+                  }>
+                  <View style={{paddingRight: 15}}>
+                    <Icon3 name="plus" color={colors.WHITE} size={30} />
+                  </View>
+                </Pressable>
+              </View>
+            ),
+            title: 'Possible issues',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.RED},
+          })}
+        />
+
+        <Stack.Screen
+          name="AddDeviceIssue"
+          component={AddDeviceIssue}
+          options={{
+            title: 'Record new device issue',
             headerTintColor: colors.WHITE,
             headerStyle: {backgroundColor: colors.RED},
           }}

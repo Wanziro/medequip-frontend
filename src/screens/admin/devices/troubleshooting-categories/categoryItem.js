@@ -19,7 +19,7 @@ const commonStyles = {
   padding: 10,
   borderLeftWidth: 5,
 };
-function CategoryItem({item, setIsLoading}) {
+function CategoryItem({item, deviceName, setIsLoading, navigation}) {
   const dispatch = useDispatch();
   const {token} = useSelector(state => state.user);
   const [borderColor, setBorderColor] = useState('');
@@ -73,7 +73,16 @@ function CategoryItem({item, setIsLoading}) {
           ? {...commonStyles, marginRight: 10, borderLeftColor: borderColor}
           : {...commonStyles, marginLeft: 10, borderLeftColor: borderColor}
       }>
-      <Pressable onLongPress={() => handleDelete()}>
+      <Pressable
+        onLongPress={() => handleDelete()}
+        onPress={() =>
+          navigation.navigate('DeviceIssues', {
+            deviceName,
+            deviceId: item.item.deviceId,
+            categoryName: item.item.name,
+            categoryId: item.item._id,
+          })
+        }>
         <Text style={{color: colors.BLACK}}>{item.item.name}</Text>
         <Text
           style={{
