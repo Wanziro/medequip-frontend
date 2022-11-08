@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Alert, Pressable, Text, View, TouchableOpacity} from 'react-native';
 import {flexSpace} from '../../../constants/styles';
-import Icon from 'react-native-vector-icons/dist/Entypo';
+import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/dist/Octicons';
 import colors from '../../../constants/colors';
 import FullPageLoader from '../../full-page-loader';
@@ -64,7 +64,7 @@ function DeviceItem({item, navigation}) {
               deviceId: item._id,
             });
           }}>
-          <Icon name="clapperboard" size={30} color={colors.RED} />
+          <Icon name="devices" size={50} color={colors.RED} />
         </TouchableOpacity>
         <TouchableOpacity
           style={{flex: 1, paddingHorizontal: 10}}

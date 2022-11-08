@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StatusBar, FlatList} from 'react-native';
+import {View, Text, StatusBar, FlatList, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 import {flexSpace} from '../../../constants/styles';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
@@ -45,13 +45,15 @@ function Home({navigation}) {
               {fullName}
             </Text>
           </View>
-          <View>
-            <Icon
-              name="ios-person-circle-outline"
-              size={60}
-              style={{color: colors.WHITE}}
-            />
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <View>
+              <Icon
+                name="ios-person-circle-outline"
+                size={60}
+                style={{color: colors.WHITE}}
+              />
+            </View>
+          </TouchableOpacity>
         </View>
         <View style={{marginVertical: 10}}>
           <Text style={{color: colors.WHITE, fontSize: 18}}>
