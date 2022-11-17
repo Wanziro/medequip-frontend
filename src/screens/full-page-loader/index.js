@@ -11,6 +11,7 @@ function FullPageLoader({isLoading}) {
         animationOut="fadeOut"
         animationOutTiming={700}
         isVisible={isLoading}
+        backdropOpacity={0.1}
         style={{padding: 0, margin: 0}}>
         <View
           style={{
