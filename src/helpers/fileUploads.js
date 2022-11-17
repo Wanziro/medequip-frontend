@@ -1,17 +1,23 @@
-import {backendUrl} from '../constants/app';
+import {imageUploadUrl} from '../constants/app';
 
-export const uploadProductImage = (file, productId) => {
+export const uploadImage = imageObject => {
   return new Promise((resolve, reject) => {
-    var url = backendUrl + '/uploadProductImage';
-    var photo = {
-      uri: file.path,
-      type: file.mime,
-      name: 'fileTobeUploaded.' + file.mime.split('/')[1],
-    };
+    var url = imageUploadUrl;
+    var photo =
+      imageObject.path && imageObject.mime
+        ? {
+            uri: imageObject.path,
+            type: imageObject.mime,
+            name: 'imageObjectTobeUploaded.' + imageObject.mime.split('/')[1],
+          }
+        : {
+            uri: imageObject.uri,
+            type: imageObject.type,
+            name: imageObject.name,
+          };
 
     var formData = new FormData();
     formData.append('file', photo);
-    formData.append('productId', productId);
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url);
@@ -21,12 +27,16 @@ export const uploadProductImage = (file, productId) => {
 
     xhr.onload = function () {
       console.log(xhr.response);
-      const response = JSON.parse(xhr.response);
-      if (response.type == 'success') {
-        const {fileName} = response;
-        resolve({status: response.type, uploadeFileName: fileName});
+      if (JSON.parse(xhr.response)) {
+        const response = JSON.parse(xhr.response);
+        if (response.type == 'success') {
+          const {fileName} = response;
+          resolve({status: response.type, fileName: fileName});
+        } else {
+          reject(response.type);
+        }
       } else {
-        reject(response.type);
+        reject('Failed to upload image');
       }
     };
     xhr.send(formData);

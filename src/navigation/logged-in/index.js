@@ -21,6 +21,8 @@ import AddTroubleShootingCategory from '../../screens/admin/devices/add-troubles
 import DeviceIssues from '../../screens/admin/devices/device-issues';
 import {flexSpace} from '../../constants/styles';
 import AddDeviceIssue from '../../screens/admin/devices/add-device-issue';
+import TroubleshootingSteps from '../../screens/admin/devices/troubleshooting-steps';
+import AddTroubleshootingStep from '../../screens/admin/devices/add-troubleshooting-step';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -257,6 +259,52 @@ const LoggedIn = () => {
             headerTintColor: colors.WHITE,
             headerStyle: {backgroundColor: colors.RED},
           })}
+        />
+
+        <Stack.Screen
+          name="TroubleshootingSteps"
+          component={TroubleshootingSteps}
+          options={({route, navigation}) => ({
+            headerRight: () => (
+              <View style={{...flexSpace}}>
+                <Pressable
+                  style={{marginRight: 10}}
+                  onPress={() => navigation.navigate('Home')}>
+                  <View style={{paddingRight: 15}}>
+                    <Icon name="home" color={colors.WHITE} size={30} />
+                  </View>
+                </Pressable>
+                <Pressable
+                  onPress={() =>
+                    navigation.navigate('AddTroubleshootingStep', {
+                      deviceName: route.params.deviceName,
+                      deviceId: route.params.deviceId,
+                      categoryName: route.params.categoryName,
+                      categoryId: route.params.categoryId,
+                      issueId: route.params.issueId,
+                      issueTitle: route.params.issueTitle,
+                    })
+                  }>
+                  <View style={{paddingRight: 15}}>
+                    <Icon3 name="plus" color={colors.WHITE} size={30} />
+                  </View>
+                </Pressable>
+              </View>
+            ),
+            title: 'Troubleshooting steps',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.RED},
+          })}
+        />
+
+        <Stack.Screen
+          name="AddTroubleshootingStep"
+          component={AddTroubleshootingStep}
+          options={{
+            title: '',
+            headerShown: false,
+            headerShadowVisible: false,
+          }}
         />
 
         <Stack.Screen

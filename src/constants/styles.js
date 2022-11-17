@@ -7,6 +7,12 @@ export const flexSpace = {
   flexDirection: 'row',
 };
 
+export const flexCenter = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+
 export const commonInput = {
   backgroundColor: colors.WHITE,
   marginTop: 10,

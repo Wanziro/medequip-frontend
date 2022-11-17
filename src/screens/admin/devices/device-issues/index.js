@@ -35,7 +35,15 @@ function DeviceIssues({navigation, route}) {
                   item.deviceId == deviceId && item.categoryId == categoryId,
               )
               .map((item, i) => (
-                <IssueItem item={item} key={i} navigation={navigation} />
+                <IssueItem
+                  item={item}
+                  key={i}
+                  navigation={navigation}
+                  deviceName={deviceName}
+                  deviceId={deviceId}
+                  categoryName={categoryName}
+                  categoryId={categoryId}
+                />
               ))
           )}
         </ScrollView>
