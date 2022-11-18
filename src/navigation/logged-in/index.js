@@ -34,7 +34,7 @@ const Tab = createBottomTabNavigator();
 //     <TopTab.Navigator
 //       initialRouteName="PendingOrders"
 //       screenOptions={{
-//         tabBarActiveTintColor: colors.RED,
+//         tabBarActiveTintColor: colors.BLUE,
 //         tabBarInactiveTintColor: colors.NIGHER_RIDER,
 //       }}>
 //       <TopTab.Screen
@@ -58,7 +58,7 @@ const Tab = createBottomTabNavigator();
 
 const HomeTabs = ({navigation}) => {
   const {companyName, fullName} = useSelector(state => state.user);
-  const [activeColor, setActiveColor] = useState(colors.RED);
+  const [activeColor, setActiveColor] = useState(colors.BLUE);
   const [inactiveColor, setInactiveColor] = useState(colors.GREY_BUNKER);
   return (
     <Tab.Navigator
@@ -82,11 +82,11 @@ const HomeTabs = ({navigation}) => {
           headerRight: () => (
             <Pressable onPress={() => navigation.navigate('Search')}>
               <View style={{paddingRight: 10}}>
-                <Icon name="search" color={colors.RED} size={30} />
+                <Icon name="search" color={colors.BLUE} size={30} />
               </View>
             </Pressable>
           ),
-          headerTintColor: colors.RED,
+          headerTintColor: colors.BLUE,
           tabBarIcon: ({focused, color, size}) => {
             return <Icon name="home" color={color} size={30} />;
           },
@@ -106,7 +106,7 @@ const HomeTabs = ({navigation}) => {
           ),
           headerTitle: 'Devices',
           headerTintColor: colors.WHITE,
-          headerStyle: {backgroundColor: colors.RED},
+          headerStyle: {backgroundColor: colors.BLUE},
           tabBarIcon: ({focused, color, size}) => {
             return <Icon2 name="multi-select" color={color} size={30} />;
           },
@@ -119,7 +119,7 @@ const HomeTabs = ({navigation}) => {
           headerShown: true,
           headerTitle: 'My Profile',
           headerTintColor: colors.WHITE,
-          headerStyle: {backgroundColor: colors.RED},
+          headerStyle: {backgroundColor: colors.BLUE},
           tabBarIcon: ({focused, color, size}) => {
             return <Icon name="person" color={color} size={30} />;
           },
@@ -174,7 +174,7 @@ const LoggedIn = () => {
           options={{
             title: 'Record new device',
             headerTintColor: colors.WHITE,
-            headerStyle: {backgroundColor: colors.RED},
+            headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
 
@@ -184,7 +184,7 @@ const LoggedIn = () => {
           options={{
             title: 'Change password',
             headerTintColor: colors.WHITE,
-            headerStyle: {backgroundColor: colors.RED},
+            headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
         <Stack.Screen
@@ -193,7 +193,7 @@ const LoggedIn = () => {
           options={{
             title: 'Update user information',
             headerTintColor: colors.WHITE,
-            headerStyle: {backgroundColor: colors.RED},
+            headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
         <Stack.Screen
@@ -215,7 +215,7 @@ const LoggedIn = () => {
             ),
             title: 'Devices / ' + route.params.deviceName,
             headerTintColor: colors.WHITE,
-            headerStyle: {backgroundColor: colors.RED},
+            headerStyle: {backgroundColor: colors.BLUE},
           })}
         />
         <Stack.Screen
@@ -224,7 +224,7 @@ const LoggedIn = () => {
           options={{
             title: 'New troubleshooting category',
             headerTintColor: colors.WHITE,
-            headerStyle: {backgroundColor: colors.RED},
+            headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
 
@@ -258,7 +258,7 @@ const LoggedIn = () => {
             ),
             title: 'Possible issues',
             headerTintColor: colors.WHITE,
-            headerStyle: {backgroundColor: colors.RED},
+            headerStyle: {backgroundColor: colors.BLUE},
           })}
         />
 
@@ -294,7 +294,7 @@ const LoggedIn = () => {
             ),
             title: 'Troubleshooting steps',
             headerTintColor: colors.WHITE,
-            headerStyle: {backgroundColor: colors.RED},
+            headerStyle: {backgroundColor: colors.BLUE},
           })}
         />
 
@@ -324,7 +324,7 @@ const LoggedIn = () => {
           options={{
             title: 'Record new device issue',
             headerTintColor: colors.WHITE,
-            headerStyle: {backgroundColor: colors.RED},
+            headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
         {/*  <Stack.Screen

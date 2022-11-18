@@ -64,7 +64,7 @@ function DeviceItem({item, navigation}) {
               deviceId: item._id,
             });
           }}>
-          <Icon name="devices" size={50} color={colors.RED} />
+          <Icon name="devices" size={50} color={colors.BLUE} />
         </TouchableOpacity>
         <TouchableOpacity
           style={{flex: 1, paddingHorizontal: 10}}

@@ -15,7 +15,7 @@ function Header({
   setShowText,
 }) {
   return (
-    <View style={{...flexSpace, backgroundColor: colors.RED, padding: 10}}>
+    <View style={{...flexSpace, backgroundColor: colors.BLUE, padding: 10}}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon name="chevron-back" size={20} style={{color: colors.WHITE}} />
       </TouchableOpacity>

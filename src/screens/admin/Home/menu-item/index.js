@@ -24,7 +24,7 @@ function AdminMenuItem({item, navigation}) {
         <Text style={{color: colors.BLACK}}>{item.item.title}</Text>
         <Text
           style={{
-            color: colors.RED,
+            color: colors.BLUE,
             fontWeight: '500',
             fontSize: 25,
             textAlign: 'center',

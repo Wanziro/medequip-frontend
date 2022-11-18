@@ -24,11 +24,11 @@ function Profile({navigation}) {
   };
   return (
     <SafeAreaView>
-      <StatusBar backgroundColor={colors.RED} barStyle="light-content" />
+      <StatusBar backgroundColor={colors.BLUE} barStyle="light-content" />
       <View style={{backgroundColor: colors.BACKGROUND_COLOR, width, height}}>
         <View
           style={{
-            backgroundColor: colors.RED,
+            backgroundColor: colors.BLUE,
             padding: 25,
             alignItems: 'center',
             justifyContent: 'center',

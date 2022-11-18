@@ -30,7 +30,7 @@ export const commonAdminButtonTextStyles = {
 };
 
 export const commonAdminButtonContainerStyles = {
-  backgroundColor: colors.RED,
+  backgroundColor: colors.BLUE,
   padding: 15,
   marginTop: 10,
   borderRadius: 5,

@@ -49,7 +49,7 @@ function UpdateUserInfo({navigation}) {
   };
   return (
     <>
-      <StatusBar backgroundColor={colors.RED} />
+      <StatusBar backgroundColor={colors.BLUE} />
       <View
         style={{
           flex: 1,
@@ -80,7 +80,7 @@ function UpdateUserInfo({navigation}) {
                   style={{
                     padding: 15,
                     borderRadius: 5,
-                    backgroundColor: colors.RED,
+                    backgroundColor: colors.BLUE,
                     marginTop: 10,
                     alignItems: 'center',
                     justifyContent: 'center',

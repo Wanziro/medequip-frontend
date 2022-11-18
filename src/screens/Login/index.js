@@ -64,7 +64,7 @@ function Login({navigation}) {
   }, []);
   return (
     <KeyboardAwareScrollView>
-      <StatusBar backgroundColor={colors.BROWN} barStyle="dark-content" />
+      <StatusBar backgroundColor={colors.BLUE} barStyle="dark-content" />
       <View
         style={{
           flex: 1,
@@ -74,7 +74,7 @@ function Login({navigation}) {
         }}>
         <View
           style={{
-            backgroundColor: colors.BROWN,
+            backgroundColor: colors.BLUE,
             padding: 10,
             height: 150,
             width: '100%',
@@ -147,7 +147,7 @@ function Login({navigation}) {
           {isSubmitting ? (
             <View
               style={{
-                backgroundColor: colors.BROWN,
+                backgroundColor: colors.BLUE,
                 padding: 15,
                 marginTop: 10,
                 borderRadius: 5,
@@ -170,7 +170,7 @@ function Login({navigation}) {
             <Pressable onPress={() => handleSubmit()}>
               <View
                 style={{
-                  backgroundColor: colors.BROWN,
+                  backgroundColor: colors.BLUE,
                   padding: 15,
                   marginTop: 10,
                   borderRadius: 5,

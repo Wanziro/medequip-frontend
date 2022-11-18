@@ -55,7 +55,7 @@ function ChangePassword({navigation}) {
   };
   return (
     <>
-      <StatusBar backgroundColor={colors.RED} barStyle="dark-content" />
+      <StatusBar backgroundColor={colors.BLUE} barStyle="dark-content" />
       <View
         style={{
           flex: 1,
@@ -107,7 +107,7 @@ function ChangePassword({navigation}) {
         <Pressable onPress={() => handleSubmit()} disabled={isSubmitting}>
           <View
             style={{
-              backgroundColor: colors.RED,
+              backgroundColor: colors.BLUE,
               padding: 15,
               borderRadius: 5,
               alignItems: 'center',

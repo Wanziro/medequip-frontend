@@ -19,7 +19,7 @@ function FullPageLoader({isLoading}) {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <ActivityIndicator color={colors.RED} size={70} />
+          <ActivityIndicator color={colors.BLUE} size={70} />
         </View>
       </Modal>
       <Root theme="dark" />

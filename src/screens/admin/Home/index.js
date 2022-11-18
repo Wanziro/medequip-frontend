@@ -34,8 +34,8 @@ function Home({navigation}) {
   ];
 
   return (
-    <View style={{backgroundColor: colors.RED, flex: 1}}>
-      <StatusBar backgroundColor={colors.RED} />
+    <View style={{backgroundColor: colors.BLUE, flex: 1}}>
+      <StatusBar backgroundColor={colors.BLUE} />
       <View style={{padding: 10}}>
         <View style={{...flexSpace}}>
           <View>

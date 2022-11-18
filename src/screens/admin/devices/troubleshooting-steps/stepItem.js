@@ -23,7 +23,7 @@ function StepItem({item, index, navigation, params}) {
         <View
           style={{
             ...flexCenter,
-            backgroundColor: colors.RED,
+            backgroundColor: colors.BLUE,
             padding: 10,
           }}>
           <Text style={{color: colors.WHITE, fontSize: 18}}>{index + 1}</Text>
