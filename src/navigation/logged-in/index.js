@@ -23,6 +23,7 @@ import {flexSpace} from '../../constants/styles';
 import AddDeviceIssue from '../../screens/admin/devices/add-device-issue';
 import TroubleshootingSteps from '../../screens/admin/devices/troubleshooting-steps';
 import AddTroubleshootingStep from '../../screens/admin/devices/add-troubleshooting-step';
+import EditStep from '../../screens/admin/devices/edit-step';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -300,6 +301,16 @@ const LoggedIn = () => {
         <Stack.Screen
           name="AddTroubleshootingStep"
           component={AddTroubleshootingStep}
+          options={{
+            title: '',
+            headerShown: false,
+            headerShadowVisible: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="EditStep"
+          component={EditStep}
           options={{
             title: '',
             headerShown: false,

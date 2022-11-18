@@ -67,7 +67,13 @@ function TroubleshootingSteps({navigation, route}) {
           {deviceName} / {categoryName} / {issueTitle} / Troubleshooting Steps
         </Text>
         {steps.map((item, i) => (
-          <StepItem item={item} key={i} index={i} />
+          <StepItem
+            item={item}
+            key={i}
+            index={i}
+            params={route.params}
+            navigation={navigation}
+          />
         ))}
       </ScrollView>
       <FullPageLoader isLoading={isLoading} />
