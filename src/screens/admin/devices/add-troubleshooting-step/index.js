@@ -42,7 +42,7 @@ function AddTroubleshootingStep({navigation, route}) {
           issueId,
           token,
         });
-        console.log(step.data);
+        // console.log(step.data);
         if (selectedImage !== null) {
           const {status, fileName} = await uploadImage(selectedImage);
           if (status == 'success') {
