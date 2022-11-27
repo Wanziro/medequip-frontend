@@ -25,7 +25,7 @@ module.exports = {
   BROWN: '#c4865a',
   BG_GRAY: '#f2f2f2',
   TEXT_COLOR: '#555555',
-  BLUE: 'blue',
+  BLUE: '#0569b4',
 
   randomColors: [
     'red',

@@ -24,7 +24,7 @@ const placeholderList = [
 ];
 
 function TroubleShootingCategories({navigation, route}) {
-  const {deviceName} = route.params;
+  const {deviceName, deviceId} = route.params;
   const [isLoadingData, setIsLoadingData] = useState(false);
   const dispatch = useDispatch();
   const {isLoading, categories} = useSelector(
@@ -59,7 +59,7 @@ function TroubleShootingCategories({navigation, route}) {
           />
         ) : (
           <FlatList
-            data={categories}
+            data={categories.filter(item => item.deviceId == deviceId)}
             showsVerticalScrollIndicator={false}
             renderItem={(item, index) => (
               <CategoryItem

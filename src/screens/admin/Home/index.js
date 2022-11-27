@@ -2,19 +2,20 @@ import React from 'react';
 import {View, Text, StatusBar, FlatList, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 import {flexSpace} from '../../../constants/styles';
-import Icon from 'react-native-vector-icons/dist/Ionicons';
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import colors from '../../../constants/colors';
 import AdminMenuItem from './menu-item';
 
 function Home({navigation}) {
   const {role, fullName} = useSelector(state => state.user);
   const {devices} = useSelector(state => state.devices);
+  const {users} = useSelector(state => state.appUsers);
 
   const adminMenuList = [
     {
       title: 'Users',
-      size: 0,
-      routeName: '',
+      size: users.length,
+      routeName: 'Users',
     },
     {
       title: 'Devices',
@@ -47,17 +48,13 @@ function Home({navigation}) {
           </View>
           <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
             <View>
-              <Icon
-                name="ios-person-circle-outline"
-                size={60}
-                style={{color: colors.WHITE}}
-              />
+              <Icon name="user-cog" size={45} style={{color: colors.WHITE}} />
             </View>
           </TouchableOpacity>
         </View>
         <View style={{marginVertical: 10}}>
           <Text style={{color: colors.WHITE, fontSize: 18}}>
-            Medequip Repair App Administration
+            Mobile MERS Administration
           </Text>
         </View>
       </View>

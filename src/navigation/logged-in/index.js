@@ -24,6 +24,8 @@ import AddDeviceIssue from '../../screens/admin/devices/add-device-issue';
 import TroubleshootingSteps from '../../screens/admin/devices/troubleshooting-steps';
 import AddTroubleshootingStep from '../../screens/admin/devices/add-troubleshooting-step';
 import EditStep from '../../screens/admin/devices/edit-step';
+import Users from '../../screens/admin/users';
+import AddUser from '../../screens/admin/users/add-user';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -160,7 +162,7 @@ const LoggedIn = () => {
     <NavigationContainer>
       <StatusBar
         backgroundColor={colors.BACKGROUND_COLOR}
-        barStyle="dark-content"
+        barStyle="light-content"
       />
       <Stack.Navigator>
         <Stack.Screen
@@ -327,6 +329,34 @@ const LoggedIn = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
+
+        <Stack.Screen
+          name="Users"
+          component={Users}
+          options={({route, navigation}) => ({
+            headerRight: () => (
+              <Pressable onPress={() => navigation.navigate('AddUser')}>
+                <View style={{paddingRight: 15}}>
+                  <Icon3 name="plus" color={colors.WHITE} size={30} />
+                </View>
+              </Pressable>
+            ),
+            title: 'System users',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          })}
+        />
+
+        <Stack.Screen
+          name="AddUser"
+          component={AddUser}
+          options={{
+            title: 'Add new user',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          }}
+        />
+
         {/*  <Stack.Screen
           name="EditProduct"
           component={EditProduct}
