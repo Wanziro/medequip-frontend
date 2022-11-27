@@ -42,7 +42,6 @@ function Login({navigation}) {
     } else {
       Axios.post(backendUrl + '/users/login/', {email, password})
         .then(res => {
-          console.log(res.data);
           const {email, fullName, companyName, role, id, token} = res.data;
           dispatch(setUserEmail(email));
           dispatch(setUserNames(fullName));
@@ -64,7 +63,7 @@ function Login({navigation}) {
   }, []);
   return (
     <KeyboardAwareScrollView>
-      <StatusBar backgroundColor={colors.BLUE} barStyle="dark-content" />
+      <StatusBar backgroundColor={colors.BLUE} barStyle="light-content" />
       <View
         style={{
           flex: 1,
