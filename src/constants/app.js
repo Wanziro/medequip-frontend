@@ -2,10 +2,13 @@ const APP_MODE = 'dev';
 // const APP_MODE = 'production';
 const CONFIG = {
   dev: {
-    // backendUrl: 'http://192.168.43.3:8080/api',
-    backendUrl: 'http://172.31.34.64:8080/api',
-    imageUrl: 'http://172.31.34.64/RN/medequip/uploads/',
-    imageUploadUrl: 'http://172.31.34.64/RN/medequip/upload.php',
+    backendUrl: 'http://192.168.43.3:8080/api',
+    imageUrl: 'http://192.168.43.3/RN/medequip/uploads/',
+    imageUploadUrl: 'http://192.168.43.3/RN/medequip/upload.php',
+
+    // backendUrl: 'http://172.31.34.64:8080/api',
+    // imageUrl: 'http://172.31.34.64/RN/medequip/uploads/',
+    // imageUploadUrl: 'http://172.31.34.64/RN/medequip/upload.php',
   },
   production: {
     backendUrl: 'https://medequip-backend.herokuapp.com/api',

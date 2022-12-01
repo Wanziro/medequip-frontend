@@ -41,8 +41,10 @@ export const toastMessage = (type, message) => {
 export const errorHandler = error => {
   if (error?.response?.data?.msg) {
     toastMessage('error', error.response.data.msg);
-  } else {
+  } else if (error.message) {
     toastMessage('error', error.message);
+  } else {
+    toastMessage('error', error);
   }
   handleAuthError(error);
 };

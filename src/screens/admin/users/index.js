@@ -36,7 +36,7 @@ function Users() {
                 item.companyName,
                 item.otp,
               ]}
-              textStyle={styles.text}
+              textStyle={{textAlign: 'center', color: colors.BLACK}}
               style={styles.row}
             />
           ))}

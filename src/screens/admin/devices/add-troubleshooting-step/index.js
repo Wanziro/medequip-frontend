@@ -124,7 +124,7 @@ function AddTroubleshootingStep({navigation, route}) {
               <Image
                 source={{uri: selectedImage.uri}}
                 style={{
-                  width: undefined,
+                  width: '100%',
                   height: undefined,
                   aspectRatio: 1,
                   marginVertical: 10,
