@@ -7,6 +7,7 @@ import {
   StatusBar,
   ScrollView,
   RefreshControl,
+  Pressable,
 } from 'react-native';
 import {flexSpace} from '../../../constants/styles';
 import Icon from 'react-native-vector-icons/dist/AntDesign';
@@ -59,14 +60,16 @@ function Home({navigation}) {
             }}>
             <View style={{position: 'relative', height: '100%', marginTop: 30}}>
               <View style={{...flexSpace}}>
-                <View
-                  style={{
-                    backgroundColor: colors.WHITE,
-                    padding: 10,
-                    borderRadius: 100,
-                  }}>
-                  <Icon name="user" size={30} color={colors.BLUE} />
-                </View>
+                <Pressable onPress={() => navigation.navigate('Profile')}>
+                  <View
+                    style={{
+                      backgroundColor: colors.WHITE,
+                      padding: 10,
+                      borderRadius: 100,
+                    }}>
+                    <Icon name="user" size={30} color={colors.BLUE} />
+                  </View>
+                </Pressable>
                 <View>
                   <Icon name="search1" size={30} color={colors.WHITE} />
                 </View>

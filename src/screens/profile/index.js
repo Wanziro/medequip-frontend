@@ -24,7 +24,11 @@ function Profile({navigation}) {
   };
   return (
     <SafeAreaView>
-      <StatusBar backgroundColor={colors.BLUE} barStyle="light-content" />
+      {userObj.role == 'user' ? (
+        <StatusBar translucent backgroundColor="transparent" />
+      ) : (
+        <StatusBar backgroundColor={colors.BLUE} barStyle="light-content" />
+      )}
       <View style={{backgroundColor: colors.BACKGROUND_COLOR, width, height}}>
         <View
           style={{

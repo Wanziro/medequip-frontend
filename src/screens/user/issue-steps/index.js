@@ -28,9 +28,12 @@ function IssueSteps({navigation, route}) {
   const [issueSteps, setIssueSteps] = useState([]);
   const [stepItems, setStepItems] = useState([]);
   const [showTicketModal, setShowTicketModal] = useState(false);
+  const [showProblemSolved, setShowProblemSolved] = useState(false);
   const [description, setDescription] = useState('');
   const [deviceModal, setDeviceModal] = useState('');
   const [isSubmittingTicket, setIsSubmittingTecket] = useState(false);
+  const [serialNumber, setSerialNumber] = useState('');
+  const [estimatedTime, setEstimatedTime] = useState('');
 
   useEffect(() => {
     const steps = db
@@ -68,6 +71,12 @@ function IssueSteps({navigation, route}) {
   const handleSubmit = () => {
     if (description.trim() === '' || deviceModal.trim() === '') {
       toastMessage('error', 'All fields are required to submit a ticket');
+      Dialog.show({
+        type: ALERT_TYPE.DANGER,
+        title: 'Error',
+        textBody: 'All fields are required to submit a ticket',
+        button: 'close',
+      });
     } else {
       setIsSubmittingTecket(true);
       Axios.post(app.backendUrl + '/tickets/', {
@@ -90,9 +99,75 @@ function IssueSteps({navigation, route}) {
           });
         })
         .catch(error => {
-          console.log(JSON.stringify(error.response));
           errorHandler(error);
           setIsSubmittingTecket(false);
+          Dialog.show({
+            type: ALERT_TYPE.DANGER,
+            title: 'Error',
+            textBody: error?.response?.data?.msg,
+            button: 'close',
+          });
+        });
+    }
+  };
+
+  const handleProblemSolved = () => {
+    Dialog.show({
+      type: ALERT_TYPE.SUCCESS,
+      title: 'Congratulations',
+      textBody:
+        'The issue has been fixed! Let us know a few information about the device that you fixed.',
+      button: 'OK',
+      onHide: () => setShowProblemSolved(true),
+    });
+  };
+
+  const handeSubmitProblemSolved = () => {
+    if (
+      serialNumber.trim() === '' ||
+      deviceModal.trim() === '' ||
+      estimatedTime.trim() === ''
+    ) {
+      Dialog.show({
+        type: ALERT_TYPE.DANGER,
+        title: 'Error',
+        textBody: 'All fields are required',
+        button: 'close',
+      });
+      toastMessage('error', 'All fields are required');
+    } else {
+      setIsSubmittingTecket(true);
+      Axios.post(app.backendUrl + '/tickets/solved/', {
+        serialNumber,
+        estimatedTime,
+        deviceModal,
+        token,
+        deviceId,
+        issueId,
+      })
+        .then(res => {
+          setIsSubmittingTecket(false);
+          setDeviceModal('');
+          setDescription('');
+          setSerialNumber('');
+          setEstimatedTime('');
+          Dialog.show({
+            type: ALERT_TYPE.SUCCESS,
+            title: 'Success',
+            textBody: res.data.msg,
+            button: 'close',
+            onHide: () => navigation.navigate('Home'),
+          });
+        })
+        .catch(error => {
+          errorHandler(error);
+          setIsSubmittingTecket(false);
+          Dialog.show({
+            type: ALERT_TYPE.DANGER,
+            title: 'Error',
+            textBody: error?.response?.data?.msg,
+            button: 'close',
+          });
         });
     }
   };
@@ -192,7 +267,11 @@ function IssueSteps({navigation, route}) {
                   Is the problem solved?
                 </Text>
                 <View style={{...flexCenter, flexDirection: 'row'}}>
-                  <Button title="YES" color="green" />
+                  <Button
+                    title="YES"
+                    onPress={() => handleProblemSolved()}
+                    color="green"
+                  />
                   {currentStepIndex > 0 && (
                     <View style={{marginLeft: 10}}>
                       <Button
@@ -300,6 +379,95 @@ function IssueSteps({navigation, route}) {
                           <Button
                             title="Submit Ticket"
                             onPress={() => handleSubmit()}
+                          />
+                        </View>
+                      </View>
+                    )}
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        animationOutTiming={700}
+        isVisible={showProblemSolved}
+        style={{padding: 0, margin: 0}}>
+        <View
+          style={{
+            flex: 1,
+            position: 'relative',
+          }}>
+          <View style={{height: '100%'}}></View>
+
+          <View style={{position: 'absolute', bottom: 0, width}}>
+            <View
+              style={{
+                backgroundColor: colors.WHITE,
+                paddingHorizontal: 10,
+                paddingVertical: 20,
+                borderTopRightRadius: 20,
+                borderTopLeftRadius: 20,
+              }}>
+              <View
+                style={{
+                  alignItems: 'flex-start',
+                  justifyContent: 'space-between',
+                  flexDirection: 'row',
+                }}>
+                <View>
+                  <Text style={{color: colors.BLUE, fontSize: 25}}>
+                    Wait a second!
+                  </Text>
+                  <Text>
+                    Help other technicians by letting us know a few information.
+                  </Text>
+                  <View style={{width: width - 20}}>
+                    <TextInput
+                      style={{
+                        ...commonInput,
+                      }}
+                      placeholder="Enter Serial Number"
+                      value={serialNumber}
+                      onChangeText={text => setSerialNumber(text)}
+                    />
+                    <TextInput
+                      style={{...commonInput}}
+                      placeholder="Enter Your Fixed Device Model"
+                      value={deviceModal}
+                      onChangeText={text => setDeviceModal(text)}
+                    />
+                    <TextInput
+                      style={{...commonInput}}
+                      placeholder="Enter estimated time used. ex: 1hr"
+                      value={estimatedTime}
+                      onChangeText={text => setEstimatedTime(text)}
+                    />
+                    {isSubmittingTicket ? (
+                      <ActivityIndicator
+                        color={colors.BLUE}
+                        size={50}
+                        style={{marginTop: 10}}
+                      />
+                    ) : (
+                      <View
+                        style={{
+                          ...flexCenter,
+                          flexDirection: 'row',
+                          marginTop: 10,
+                        }}>
+                        <Button
+                          title="Close"
+                          color={colors.RED}
+                          onPress={() => setShowProblemSolved(false)}
+                        />
+                        <View style={{marginLeft: 10}}>
+                          <Button
+                            title="Submit"
+                            onPress={() => handeSubmitProblemSolved()}
                           />
                         </View>
                       </View>
