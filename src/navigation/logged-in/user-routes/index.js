@@ -7,15 +7,14 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 // import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Pressable, View} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
-import Icon2 from 'react-native-vector-icons/dist/Octicons';
-import Icon3 from 'react-native-vector-icons/dist/AntDesign';
+import Icon2 from 'react-native-vector-icons/dist/AntDesign';
 import Home from '../../../screens/user/Home';
 import colors from '../../../constants/colors';
 import Profile from '../../../screens/profile';
-import Devices from '../../../screens/admin/devices';
 import ChangePassword from '../../../screens/profile/change-password';
 import UpdateUserInfo from '../../../screens/profile/update-user-info';
 import IssueSteps from '../../../screens/user/issue-steps';
+import Chat from '../../../screens/user/chat';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -86,22 +85,22 @@ const HomeTabs = ({navigation}) => {
         })}
       />
       <Tab.Screen
-        name="Devices"
-        component={Devices}
+        name="Chat"
+        component={Chat}
         options={{
           headerShown: true,
           headerRight: () => (
-            <Pressable onPress={() => navigation.navigate('AddDevice')}>
+            <Pressable>
               <View style={{paddingRight: 15}}>
-                <Icon3 name="plus" color={colors.WHITE} size={30} />
+                <Icon2 name="plus" color={colors.WHITE} size={30} />
               </View>
             </Pressable>
           ),
-          headerTitle: 'Devices',
+          headerTitle: 'Chat Box',
           headerTintColor: colors.WHITE,
           headerStyle: {backgroundColor: colors.BLUE},
           tabBarIcon: ({focused, color, size}) => {
-            return <Icon2 name="multi-select" color={color} size={30} />;
+            return <Icon name="chatbubbles" color={color} size={30} />;
           },
         }}
       />
