@@ -1,5 +1,5 @@
-const APP_MODE = 'dev';
-// const APP_MODE = 'production';
+// const APP_MODE = 'dev';
+const APP_MODE = 'production';
 const CONFIG = {
   dev: {
     backendUrl: 'http://192.168.43.3:8080/api',
@@ -11,7 +11,8 @@ const CONFIG = {
     // imageUploadUrl: 'http://172.31.34.64/RN/medequip/upload.php',
   },
   production: {
-    backendUrl: 'https://medequip-backend.herokuapp.com/api',
+    // backendUrl: 'https://medequip-backend.herokuapp.com/api',
+    backendUrl: 'https://mobile-mers-backend.onrender.com/api',
     imageUrl: 'https://autoexpertsrwanda.com/images/ic2/uploads/',
     imageUploadUrl: 'https://autoexpertsrwanda.com/images/ic2/upload.php',
   },
