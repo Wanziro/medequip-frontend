@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {StatusBar} from 'react-native';
+import {StatusBar, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -17,6 +17,7 @@ import IssueSteps from '../../../screens/user/issue-steps';
 import Chat from '../../../screens/user/chat';
 import SearchIssues from '../../../screens/user/search-issues';
 import SearchHeader from '../../../screens/user/search-issues/header/searchHeader';
+import IssuesPerCategory from '../../../screens/user/issues-per-category';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -197,6 +198,21 @@ const UserRoutes = () => {
           options={({route, navigation}) => ({
             headerRight: () => <SearchHeader />,
             title: '',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          })}
+        />
+        <Stack.Screen
+          name="IssuesPerCategory"
+          component={IssuesPerCategory}
+          options={({route, navigation}) => ({
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('SearchIssues')}>
+                <Icon2 name="search1" size={30} color={colors.WHITE} />
+              </TouchableOpacity>
+            ),
+            title: route.params.categoryName,
             headerTintColor: colors.WHITE,
             headerStyle: {backgroundColor: colors.BLUE},
           })}

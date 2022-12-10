@@ -107,7 +107,7 @@ function Home({navigation}) {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
           <View style={{padding: 10, flex: 1}}>
-            <IssueCategories />
+            <IssueCategories navigation={navigation} />
             <Text style={{color: colors.ORANGE}}>LATEST DEVICE ISSUES</Text>
             <LatestDeviceIssues navigation={navigation} />
           </View>
