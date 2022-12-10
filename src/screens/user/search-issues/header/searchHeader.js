@@ -15,7 +15,7 @@ function SearchHeader() {
     }, 500);
   }, []);
   return (
-    <View style={{width: '90%', paddingLeft: 10}}>
+    <View style={{width: '87%', paddingLeft: 10}}>
       <TextInput
         placeholder="Search for issues"
         value={issueKeyword}
