@@ -5,6 +5,7 @@ import troubleShootingCategories from './troubleShootingCategories';
 import deviceIssues from './deviceIssues';
 import appUsers from './appUsers';
 import db from './db';
+import keywords from './keywords';
 const rootReducer = combineReducers({
   user,
   devices,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   deviceIssues,
   appUsers,
   db,
+  keywords,
 });
 
 export default rootReducer;

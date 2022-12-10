@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {useSelector} from 'react-redux';
 import DeviceLoader from './deviceLoader';
 import Icon from 'react-native-vector-icons/dist/AntDesign';
@@ -21,7 +21,7 @@ function LatestDeviceIssues({navigation}) {
         </View>
       ) : db.length > 0 ? (
         db[0].deviceIssues.map((item, index) => (
-          <TouchableOpacity
+          <Pressable
             key={index}
             onPress={() =>
               navigation.navigate('IssueSteps', {
@@ -75,11 +75,11 @@ function LatestDeviceIssues({navigation}) {
                 </View>
               </View>
             </View>
-          </TouchableOpacity>
+          </Pressable>
         ))
       ) : (
         <>
-          <Text>No devices found</Text>
+          <Text>No Issues Found</Text>
         </>
       )}
     </View>

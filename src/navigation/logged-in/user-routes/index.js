@@ -15,6 +15,8 @@ import ChangePassword from '../../../screens/profile/change-password';
 import UpdateUserInfo from '../../../screens/profile/update-user-info';
 import IssueSteps from '../../../screens/user/issue-steps';
 import Chat from '../../../screens/user/chat';
+import SearchIssues from '../../../screens/user/search-issues';
+import SearchHeader from '../../../screens/user/search-issues/header/searchHeader';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -188,6 +190,16 @@ const UserRoutes = () => {
             headerShadowVisible: false,
             headerTintColor: colors.WHITE,
           }}
+        />
+        <Stack.Screen
+          name="SearchIssues"
+          component={SearchIssues}
+          options={({route, navigation}) => ({
+            headerRight: () => <SearchHeader />,
+            title: '',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>

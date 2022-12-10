@@ -62,7 +62,7 @@ function IssueSteps({navigation, route}) {
   const handleNext = () => {
     if (currentStepIndex < issueSteps.length - 1) {
       setCurrentStepIndex(currentStepIndex + 1);
-      toastMessage('success', 'Switched to previous step');
+      toastMessage('success', 'Switched to next step!');
     } else {
       setShowTicketModal(true);
     }
@@ -314,7 +314,7 @@ function IssueSteps({navigation, route}) {
           <View style={{position: 'absolute', bottom: 0, width}}>
             <View
               style={{
-                backgroundColor: colors.WHITE,
+                backgroundColor: colors.BACKGROUND_COLOR,
                 paddingHorizontal: 10,
                 paddingVertical: 20,
                 borderTopRightRadius: 20,
@@ -328,9 +328,9 @@ function IssueSteps({navigation, route}) {
                 }}>
                 <View>
                   <Text style={{color: colors.RED, fontSize: 25}}>
-                    Sorry for the inconvenience!
+                    Leave A Ticket!
                   </Text>
-                  <Text>
+                  <Text style={{color: colors.TEXT_COLOR}}>
                     You have reached out the end of our troubleshooting steps
                     regarding this issue. If the steps mentioned didn't help you
                     to reach to the final solution expected, You can raise a
@@ -402,11 +402,10 @@ function IssueSteps({navigation, route}) {
             position: 'relative',
           }}>
           <View style={{height: '100%'}}></View>
-
           <View style={{position: 'absolute', bottom: 0, width}}>
             <View
               style={{
-                backgroundColor: colors.WHITE,
+                backgroundColor: colors.BACKGROUND_COLOR,
                 paddingHorizontal: 10,
                 paddingVertical: 20,
                 borderTopRightRadius: 20,
@@ -420,9 +419,9 @@ function IssueSteps({navigation, route}) {
                 }}>
                 <View>
                   <Text style={{color: colors.BLUE, fontSize: 25}}>
-                    Wait a second!
+                    Just a second!
                   </Text>
-                  <Text>
+                  <Text style={{color: colors.TEXT_COLOR}}>
                     Help other technicians by letting us know a few information.
                   </Text>
                   <View style={{width: width - 20}}>

@@ -8,6 +8,7 @@ import {
   ScrollView,
   RefreshControl,
   Pressable,
+  TouchableOpacity,
 } from 'react-native';
 import {flexSpace} from '../../../constants/styles';
 import Icon from 'react-native-vector-icons/dist/AntDesign';
@@ -15,6 +16,7 @@ import colors from '../../../constants/colors';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchDB} from '../../../actions/db';
 import LatestDeviceIssues from './latest-device-issues';
+import IssueCategories from './issue-categories/issueCategories';
 const {width} = Dimensions.get('window');
 function Home({navigation}) {
   const dispatch = useDispatch();
@@ -70,9 +72,12 @@ function Home({navigation}) {
                     <Icon name="user" size={30} color={colors.BLUE} />
                   </View>
                 </Pressable>
-                <View>
-                  <Icon name="search1" size={30} color={colors.WHITE} />
-                </View>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('SearchIssues')}>
+                  <View>
+                    <Icon name="search1" size={30} color={colors.WHITE} />
+                  </View>
+                </TouchableOpacity>
               </View>
               <View
                 style={{bottom: 0, position: 'absolute', paddingBottom: 10}}>
@@ -102,6 +107,7 @@ function Home({navigation}) {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
           <View style={{padding: 10, flex: 1}}>
+            <IssueCategories />
             <Text style={{color: colors.ORANGE}}>LATEST DEVICE ISSUES</Text>
             <LatestDeviceIssues navigation={navigation} />
           </View>
