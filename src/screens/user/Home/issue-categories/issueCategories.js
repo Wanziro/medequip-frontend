@@ -10,7 +10,7 @@ function IssueCategories({navigation}) {
   const {db, isLoading} = useSelector(state => state.db);
   return (
     <>
-      {db.length > 0 && !isLoading && (
+      {db.length > 0 && (
         <View style={{marginBottom: 10}}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={{alignItems: 'center', flexDirection: 'row'}}>

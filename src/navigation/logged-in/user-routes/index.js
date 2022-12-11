@@ -18,6 +18,7 @@ import Chat from '../../../screens/user/chat';
 import SearchIssues from '../../../screens/user/search-issues';
 import SearchHeader from '../../../screens/user/search-issues/header/searchHeader';
 import IssuesPerCategory from '../../../screens/user/issues-per-category';
+import UsersList from '../../../screens/user/users-list';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -92,16 +93,10 @@ const HomeTabs = ({navigation}) => {
         component={Chat}
         options={{
           headerShown: true,
-          headerRight: () => (
-            <Pressable>
-              <View style={{paddingRight: 15}}>
-                <Icon2 name="plus" color={colors.WHITE} size={30} />
-              </View>
-            </Pressable>
-          ),
           headerTitle: 'Chat Box',
           headerTintColor: colors.WHITE,
           headerStyle: {backgroundColor: colors.BLUE},
+          headerTitleAlign: 'center',
           tabBarIcon: ({focused, color, size}) => {
             return <Icon name="chatbubbles" color={color} size={30} />;
           },
@@ -213,6 +208,16 @@ const UserRoutes = () => {
               </TouchableOpacity>
             ),
             title: route.params.categoryName,
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          })}
+        />
+        <Stack.Screen
+          name="UsersList"
+          component={UsersList}
+          options={({route, navigation}) => ({
+            title: 'Select User To Chat With',
+            headerTitleAlign: 'center',
             headerTintColor: colors.WHITE,
             headerStyle: {backgroundColor: colors.BLUE},
           })}

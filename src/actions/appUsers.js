@@ -39,3 +39,17 @@ export const fetchUsers = () => (dispatch, getState) => {
       errorHandler(error);
     });
 };
+
+export const fetchUsersSilent = () => (dispatch, getState) => {
+  const {user} = getState();
+  dispatch(setLoadingUsers(true));
+  Axios.get(backendUrl + '/users/chatt/?token=' + user.token)
+    .then(res => {
+      dispatch(setLoadingUsers(false));
+      dispatch(setAddUsers(res.data.users));
+    })
+    .catch(error => {
+      dispatch(setLoadingUsers(false));
+      // errorHandler(error);
+    });
+};
