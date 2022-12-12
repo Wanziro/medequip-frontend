@@ -126,21 +126,21 @@ function Register({navigation}) {
             padding: 10,
             height: 50,
             width: '100%',
-            borderBottomEndRadius: 80,
+            // borderBottomEndRadius: 80,
             // borderBottomStartRadius: 80,
             position: 'relative',
           }}>
-          <View style={{position: 'absolute', bottom: -70, width}}>
+          <View style={{position: 'absolute', bottom: -50, width}}>
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <View
                 style={{
                   backgroundColor: colors.BACKGROUND_COLOR,
-                  borderRadius: 100,
-                  padding: 10,
+                  borderRadius: 10,
+                  // padding: 10,
                 }}>
                 <Image
                   source={require('../../../assets/logo.png')}
-                  style={{width: 100, height: 100}}
+                  style={{width: 90, height: 90, borderRadius: 10}}
                 />
               </View>
             </View>

@@ -77,7 +77,7 @@ function Login({navigation}) {
             padding: 10,
             height: 150,
             width: '100%',
-            borderBottomEndRadius: 80,
+            // borderBottomEndRadius: 80,
             // borderBottomStartRadius: 80,
             position: 'relative',
           }}>
@@ -86,12 +86,12 @@ function Login({navigation}) {
               <View
                 style={{
                   backgroundColor: colors.BACKGROUND_COLOR,
-                  borderRadius: 100,
-                  padding: 10,
+                  borderRadius: 10,
+                  // padding: 10,
                 }}>
                 <Image
                   source={require('../../../assets/logo.png')}
-                  style={{width: 150, height: 150}}
+                  style={{width: 150, height: 150, borderRadius: 10}}
                 />
               </View>
             </View>
