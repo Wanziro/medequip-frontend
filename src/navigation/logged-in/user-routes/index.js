@@ -19,6 +19,8 @@ import SearchIssues from '../../../screens/user/search-issues';
 import SearchHeader from '../../../screens/user/search-issues/header/searchHeader';
 import IssuesPerCategory from '../../../screens/user/issues-per-category';
 import UsersList from '../../../screens/user/users-list';
+import ChattHeader from '../../../screens/user/chat-messages/chatt-header';
+import ChattMessages from '../../../screens/user/chat-messages';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -220,6 +222,16 @@ const UserRoutes = () => {
             headerTitleAlign: 'center',
             headerTintColor: colors.WHITE,
             headerStyle: {backgroundColor: colors.BLUE},
+          })}
+        />
+        <Stack.Screen
+          name="ChattMessages"
+          component={ChattMessages}
+          options={({route, navigation}) => ({
+            headerRight: () => <ChattHeader user={route.params.user} />,
+            headerStyle: {backgroundColor: colors.BLUE},
+            title: '',
+            headerTintColor: colors.WHITE,
           })}
         />
       </Stack.Navigator>

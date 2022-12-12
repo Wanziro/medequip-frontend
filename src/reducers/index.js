@@ -6,6 +6,8 @@ import deviceIssues from './deviceIssues';
 import appUsers from './appUsers';
 import db from './db';
 import keywords from './keywords';
+import messages from './messages';
+import rooms from './rooms';
 const rootReducer = combineReducers({
   user,
   devices,
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
   appUsers,
   db,
   keywords,
+  messages,
+  rooms,
 });
 
 export default rootReducer;

@@ -7,7 +7,7 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
 function UserItem({user, navigation}) {
   return (
-    <Pressable>
+    <Pressable onPress={() => navigation.navigate('ChattMessages', {user})}>
       <View
         style={{
           ...flexSpace,
