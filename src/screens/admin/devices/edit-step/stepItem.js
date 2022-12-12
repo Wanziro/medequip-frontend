@@ -2,12 +2,21 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity, Alert} from 'react-native';
 import {backendUrl, imageUrl} from '../../../../constants/app';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
+import Icon2 from 'react-native-vector-icons/dist/AntDesign';
 import colors from '../../../../constants/colors';
-import {commonInput} from '../../../../constants/styles';
+import {commonInput, flexCenter} from '../../../../constants/styles';
 import Axios from 'axios';
 import {errorHandler, toastMessage} from '../../../../helpers';
 
-function StepItem({item, stepItems, setStepItems, setIsloading, token}) {
+function StepItem({
+  item,
+  stepItems,
+  setStepItems,
+  setIsloading,
+  token,
+  navigation,
+  fetchStepItems,
+}) {
   const deleteStepItem = () => {
     setIsloading(true);
     Axios.delete(
@@ -64,11 +73,11 @@ function StepItem({item, stepItems, setStepItems, setIsloading, token}) {
               <View
                 style={{
                   padding: 10,
-                  backgroundColor: colors.WHITE,
+                  backgroundColor: colors.RED,
                   borderRadius: 100,
                   borderColor: colors.BORDER_COLOR,
                 }}>
-                <Icon name="ios-close" size={25} color="black" />
+                <Icon name="ios-close" size={25} color={colors.WHITE} />
               </View>
             </TouchableOpacity>
           </View>
@@ -80,17 +89,34 @@ function StepItem({item, stepItems, setStepItems, setIsloading, token}) {
             {item.value}
           </Text>
           <View style={{position: 'absolute', top: 0, right: 0}}>
-            <TouchableOpacity onPress={() => handleDelete()}>
-              <View
-                style={{
-                  padding: 10,
-                  backgroundColor: colors.WHITE,
-                  borderRadius: 100,
-                  borderColor: colors.BORDER_COLOR,
-                }}>
-                <Icon name="ios-close" size={25} color="black" />
-              </View>
-            </TouchableOpacity>
+            <View style={{...flexCenter, flexDirection: 'row'}}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('EditStepItem', {item, fetchStepItems})
+                }
+                style={{marginRight: 10}}>
+                <View
+                  style={{
+                    padding: 10,
+                    backgroundColor: colors.BLUE,
+                    borderRadius: 100,
+                    borderColor: colors.BORDER_COLOR,
+                  }}>
+                  <Icon2 name="edit" size={25} color={colors.WHITE} />
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleDelete()}>
+                <View
+                  style={{
+                    padding: 10,
+                    backgroundColor: colors.RED,
+                    borderRadius: 100,
+                    borderColor: colors.BORDER_COLOR,
+                  }}>
+                  <Icon name="ios-close" size={25} color={colors.WHITE} />
+                </View>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       )}

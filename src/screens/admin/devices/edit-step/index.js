@@ -168,6 +168,8 @@ function EditStep({navigation, route}) {
                 setStepItems={setStepItems}
                 setIsloading={setIsloading}
                 token={token}
+                navigation={navigation}
+                fetchStepItems={fetchStepItems}
               />
             ))}
             {showImage && selectedImage !== null && (

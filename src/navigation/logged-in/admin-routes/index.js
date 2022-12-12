@@ -26,6 +26,7 @@ import AddTroubleshootingStep from '../../../screens/admin/devices/add-troublesh
 import EditStep from '../../../screens/admin/devices/edit-step';
 import Users from '../../../screens/admin/users';
 import AddUser from '../../../screens/admin/users/add-user';
+import EditStepItem from '../../../screens/admin/devices/edit-step-item';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -317,6 +318,16 @@ const AdminRoutes = () => {
             title: '',
             headerShown: false,
             headerShadowVisible: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="EditStepItem"
+          component={EditStepItem}
+          options={{
+            title: 'Edit Step Item',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
 
