@@ -42,7 +42,7 @@ function Chat({navigation}) {
             <View
               style={{
                 paddingHorizontal: 15,
-                paddingVertical: 20,
+                paddingVertical: 15,
                 ...flexSpace,
                 alignItems: 'flex-start',
               }}>

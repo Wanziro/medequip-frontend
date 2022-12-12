@@ -1,4 +1,4 @@
-import Reacty, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Dimensions, View, ScrollView, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {silentFetchMessages} from '../../../actions/messages';
@@ -12,13 +12,22 @@ function ChattMessages({navigation, route}) {
   const {user} = route.params;
   const {messages, isLoading} = useSelector(state => state.messages);
   const {id} = useSelector(state => state.user);
+  const [sentCounter, setSentCounter] = useState(0);
+
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     dispatch(silentFetchMessages());
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      scrollRef.current.scrollToEnd({animated: true});
+    }, 100);
+  }, [messages]);
   return (
     <View style={{flex: 1, position: 'relative'}}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} ref={scrollRef}>
         <View
           style={{
             padding: 10,
