@@ -22,15 +22,15 @@ function Home({navigation}) {
       size: devices.length,
       routeName: 'Devices',
     },
+    // {
+    //   title: 'Tickets',
+    //   size: 0,
+    //   routeName: '',
+    // },
     {
-      title: 'Spare parts',
-      size: 0,
-      routeName: '',
-    },
-    {
-      title: 'Tickets',
-      size: 0,
-      routeName: '',
+      title: 'Reports',
+      size: 3,
+      routeName: 'Reports',
     },
   ];
 

@@ -27,6 +27,8 @@ import EditStep from '../../../screens/admin/devices/edit-step';
 import Users from '../../../screens/admin/users';
 import AddUser from '../../../screens/admin/users/add-user';
 import EditStepItem from '../../../screens/admin/devices/edit-step-item';
+import Reports from '../../../screens/admin/reports';
+import Preview from '../../../screens/admin/reports/preview';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -363,6 +365,25 @@ const AdminRoutes = () => {
           component={AddUser}
           options={{
             title: 'Add new user',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          }}
+        />
+
+        <Stack.Screen
+          name="Reports"
+          component={Reports}
+          options={{
+            title: 'Reports',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          }}
+        />
+        <Stack.Screen
+          name="Preview"
+          component={Preview}
+          options={{
+            title: 'PDF',
             headerTintColor: colors.WHITE,
             headerStyle: {backgroundColor: colors.BLUE},
           }}

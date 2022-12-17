@@ -1,5 +1,5 @@
-// const APP_MODE = 'dev';
-const APP_MODE = 'production';
+const APP_MODE = 'dev';
+// const APP_MODE = 'production';
 const CONFIG = {
   dev: {
     backendUrl: 'http://192.168.43.3:8080/api',
