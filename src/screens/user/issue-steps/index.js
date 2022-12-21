@@ -34,6 +34,7 @@ function IssueSteps({navigation, route}) {
   const [isSubmittingTicket, setIsSubmittingTecket] = useState(false);
   const [serialNumber, setSerialNumber] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
+  const [estimatedPrice, setEstimatedPrice] = useState('');
 
   useEffect(() => {
     const steps = db
@@ -126,7 +127,8 @@ function IssueSteps({navigation, route}) {
     if (
       serialNumber.trim() === '' ||
       deviceModal.trim() === '' ||
-      estimatedTime.trim() === ''
+      estimatedTime.trim() === '' ||
+      estimatedPrice.trim() === ''
     ) {
       Dialog.show({
         type: ALERT_TYPE.DANGER,
@@ -140,6 +142,7 @@ function IssueSteps({navigation, route}) {
       Axios.post(app.backendUrl + '/tickets/solved/', {
         serialNumber,
         estimatedTime,
+        estimatedPrice,
         deviceModal,
         token,
         deviceId,
@@ -151,6 +154,7 @@ function IssueSteps({navigation, route}) {
           setDescription('');
           setSerialNumber('');
           setEstimatedTime('');
+          setEstimatedPrice('');
           Dialog.show({
             type: ALERT_TYPE.SUCCESS,
             title: 'Success',
@@ -422,7 +426,8 @@ function IssueSteps({navigation, route}) {
                     Just a second!
                   </Text>
                   <Text style={{color: colors.TEXT_COLOR}}>
-                    Help other technicians by letting us know a few information.
+                    Help other technicians by letting us know a few information
+                    regarding equipment that you fixed.
                   </Text>
                   <View style={{width: width - 20}}>
                     <TextInput
@@ -435,7 +440,7 @@ function IssueSteps({navigation, route}) {
                     />
                     <TextInput
                       style={{...commonInput}}
-                      placeholder="Enter Your Fixed Device Model"
+                      placeholder="Enter Device Model"
                       value={deviceModal}
                       onChangeText={text => setDeviceModal(text)}
                     />
@@ -444,6 +449,17 @@ function IssueSteps({navigation, route}) {
                       placeholder="Enter estimated time used. ex: 1hr"
                       value={estimatedTime}
                       onChangeText={text => setEstimatedTime(text)}
+                    />
+                    <Text style={{marginTop: 10}}>
+                      Estimated Maintenance price plus price of the spare parts
+                      used if any
+                    </Text>
+                    <TextInput
+                      style={{...commonInput}}
+                      placeholder="Enter estimated price for this troubleshooting in RWF."
+                      value={estimatedPrice}
+                      onChangeText={text => setEstimatedPrice(text)}
+                      keyboardType="number-pad"
                     />
                     {isSubmittingTicket ? (
                       <ActivityIndicator
