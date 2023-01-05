@@ -20,11 +20,11 @@ export const setLoadingSpareParts = trueOrFalse => dispatch => {
 
 export const fetchSpareParts = () => (dispatch, getState) => {
   const {user} = getState();
-  dispatch(setLoadingUsers(true));
+  dispatch(setLoadingSpareParts(true));
   Axios.get(backendUrl + '/spareparts/?token=' + user.token)
     .then(res => {
       dispatch(setLoadingSpareParts(false));
-      dispatch(setSpareParts(res.data.users));
+      dispatch(setSpareParts(res.data.spareparts));
     })
     .catch(error => {
       dispatch(setLoadingSpareParts(false));

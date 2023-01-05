@@ -10,6 +10,7 @@ function Home({navigation}) {
   const {role, fullName} = useSelector(state => state.user);
   const {devices} = useSelector(state => state.devices);
   const {users} = useSelector(state => state.appUsers);
+  const {spareparts} = useSelector(state => state.spareparts);
 
   const adminMenuList = [
     {
@@ -24,7 +25,7 @@ function Home({navigation}) {
     },
     {
       title: 'Spare Parts',
-      size: 0,
+      size: spareparts.length,
       routeName: 'SpareParts',
     },
     {

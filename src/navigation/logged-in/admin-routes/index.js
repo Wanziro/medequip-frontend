@@ -30,6 +30,8 @@ import EditStepItem from '../../../screens/admin/devices/edit-step-item';
 import Reports from '../../../screens/admin/reports';
 import Preview from '../../../screens/admin/reports/preview';
 import SpareParts from '../../../screens/admin/spare-parts';
+import AddSparePart from '../../../screens/admin/spare-parts/add-new';
+import EditSparePart from '../../../screens/admin/spare-parts/edit-spare-part';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -393,8 +395,35 @@ const AdminRoutes = () => {
         <Stack.Screen
           name="SpareParts"
           component={SpareParts}
+          options={({route, navigation}) => ({
+            headerRight: () => (
+              <Pressable onPress={() => navigation.navigate('AddSparePart')}>
+                <View style={{paddingRight: 10}}>
+                  <Icon3 name="plus" color={colors.WHITE} size={30} />
+                </View>
+              </Pressable>
+            ),
+            title: 'Spare Parts',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          })}
+        />
+
+        <Stack.Screen
+          name="AddSparePart"
+          component={AddSparePart}
           options={{
-            title: 'PDF',
+            title: 'Add spare part',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          }}
+        />
+
+        <Stack.Screen
+          name="EditSparePart"
+          component={EditSparePart}
+          options={{
+            title: 'Edit spare part',
             headerTintColor: colors.WHITE,
             headerStyle: {backgroundColor: colors.BLUE},
           }}
