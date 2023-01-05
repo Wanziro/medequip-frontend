@@ -29,6 +29,7 @@ import AddUser from '../../../screens/admin/users/add-user';
 import EditStepItem from '../../../screens/admin/devices/edit-step-item';
 import Reports from '../../../screens/admin/reports';
 import Preview from '../../../screens/admin/reports/preview';
+import SpareParts from '../../../screens/admin/spare-parts';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -382,6 +383,16 @@ const AdminRoutes = () => {
         <Stack.Screen
           name="Preview"
           component={Preview}
+          options={{
+            title: 'PDF',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          }}
+        />
+
+        <Stack.Screen
+          name="SpareParts"
+          component={SpareParts}
           options={{
             title: 'PDF',
             headerTintColor: colors.WHITE,

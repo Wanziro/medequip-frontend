@@ -8,6 +8,7 @@ import db from './db';
 import keywords from './keywords';
 import messages from './messages';
 import rooms from './rooms';
+import spareparts from './spareparts';
 const rootReducer = combineReducers({
   user,
   devices,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   keywords,
   messages,
   rooms,
+  spareparts,
 });
 
 export default rootReducer;

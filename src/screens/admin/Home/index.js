@@ -22,11 +22,11 @@ function Home({navigation}) {
       size: devices.length,
       routeName: 'Devices',
     },
-    // {
-    //   title: 'Tickets',
-    //   size: 0,
-    //   routeName: '',
-    // },
+    {
+      title: 'Spare Parts',
+      size: 0,
+      routeName: 'SpareParts',
+    },
     {
       title: 'Reports',
       size: 3,
