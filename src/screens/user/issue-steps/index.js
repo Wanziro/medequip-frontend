@@ -11,15 +11,18 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {ALERT_TYPE, Dialog, Root, Toast} from 'react-native-alert-notification';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import app from '../../../constants/app';
 import colors from '../../../constants/colors';
 import {commonInput, flexCenter, flexSpace} from '../../../constants/styles';
 import {errorHandler, toastMessage} from '../../../helpers';
 import Modal from 'react-native-modal';
 import Axios from 'axios';
-const {width} = Dimensions.get('window');
+import SparePartItem from './sparepartItem';
+import {fetchSparePartsSilent} from '../../../actions/spareparts';
+const {width, height} = Dimensions.get('window');
 function IssueSteps({navigation, route}) {
+  const dispatch = useDispatch();
   const {db} = useSelector(state => state.db);
   const {token} = useSelector(state => state.user);
   const {deviceId, issueId} = route.params;
@@ -36,6 +39,20 @@ function IssueSteps({navigation, route}) {
   const [estimatedTime, setEstimatedTime] = useState('');
   const [estimatedPrice, setEstimatedPrice] = useState('');
 
+  const [sparePartsUsedList, setSparePartsUsedList] = useState([]);
+
+  const handleRemoveSparePart = index => {
+    const delList = [...sparePartsUsedList];
+    delList.splice(index, 1);
+    setSparePartsUsedList(delList);
+  };
+
+  const handleUpdateSparePart = (index, obj) => {
+    let spares = sparePartsUsedList;
+    spares[index] = obj;
+    setSparePartsUsedList(spares);
+  };
+
   useEffect(() => {
     const steps = db
       .find(item => item._id == deviceId)
@@ -45,6 +62,7 @@ function IssueSteps({navigation, route}) {
     if (steps && steps.length > 0) {
       setIssueSteps(steps);
     }
+    dispatch(fetchSparePartsSilent());
   }, [deviceId, issueId]);
 
   useEffect(() => {
@@ -127,8 +145,9 @@ function IssueSteps({navigation, route}) {
     if (
       serialNumber.trim() === '' ||
       deviceModal.trim() === '' ||
-      estimatedTime.trim() === '' ||
-      estimatedPrice.trim() === ''
+      estimatedTime.trim() === ''
+      // ||
+      // estimatedPrice.trim() === ''
     ) {
       Dialog.show({
         type: ALERT_TYPE.DANGER,
@@ -142,7 +161,8 @@ function IssueSteps({navigation, route}) {
       Axios.post(app.backendUrl + '/tickets/solved/', {
         serialNumber,
         estimatedTime,
-        estimatedPrice,
+        // estimatedPrice,
+        sparePartsUsedList,
         deviceModal,
         token,
         deviceId,
@@ -399,6 +419,7 @@ function IssueSteps({navigation, route}) {
         animationOut="slideOutDown"
         animationOutTiming={700}
         isVisible={showProblemSolved}
+        onBackButtonPress={() => setShowProblemSolved(false)}
         style={{padding: 0, margin: 0}}>
         <View
           style={{
@@ -406,91 +427,111 @@ function IssueSteps({navigation, route}) {
             position: 'relative',
           }}>
           <View style={{height: '100%'}}></View>
-          <View style={{position: 'absolute', bottom: 0, width}}>
-            <View
-              style={{
-                backgroundColor: colors.BACKGROUND_COLOR,
-                paddingHorizontal: 10,
-                paddingVertical: 20,
-                borderTopRightRadius: 20,
-                borderTopLeftRadius: 20,
-              }}>
+          <View
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              width,
+              maxHeight: height - 100,
+            }}>
+            <ScrollView>
               <View
                 style={{
-                  alignItems: 'flex-start',
-                  justifyContent: 'space-between',
-                  flexDirection: 'row',
+                  backgroundColor: colors.BACKGROUND_COLOR,
+                  paddingHorizontal: 10,
+                  paddingVertical: 20,
+                  borderTopRightRadius: 20,
+                  borderTopLeftRadius: 20,
                 }}>
-                <View>
-                  <Text style={{color: colors.BLUE, fontSize: 25}}>
-                    Just a second!
-                  </Text>
-                  <Text style={{color: colors.TEXT_COLOR}}>
-                    Help other technicians by letting us know a few information
-                    regarding equipment that you fixed.
-                  </Text>
-                  <View style={{width: width - 20}}>
-                    <TextInput
-                      style={{
-                        ...commonInput,
-                      }}
-                      placeholder="Enter Serial Number"
-                      value={serialNumber}
-                      onChangeText={text => setSerialNumber(text)}
-                    />
-                    <TextInput
-                      style={{...commonInput}}
-                      placeholder="Enter Device Model"
-                      value={deviceModal}
-                      onChangeText={text => setDeviceModal(text)}
-                    />
-                    <TextInput
-                      style={{...commonInput}}
-                      placeholder="Enter estimated time used. ex: 1hr"
-                      value={estimatedTime}
-                      onChangeText={text => setEstimatedTime(text)}
-                    />
-                    <Text style={{marginTop: 10}}>
-                      Estimated Maintenance price plus price of the spare parts
-                      used if any
+                <View
+                  style={{
+                    alignItems: 'flex-start',
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                  }}>
+                  <View>
+                    <Text style={{color: colors.BLUE, fontSize: 25}}>
+                      Just a second!
                     </Text>
-                    <TextInput
-                      style={{...commonInput}}
-                      placeholder="Enter estimated price for this troubleshooting in RWF."
-                      value={estimatedPrice}
-                      onChangeText={text => setEstimatedPrice(text)}
-                      keyboardType="number-pad"
-                    />
-                    {isSubmittingTicket ? (
-                      <ActivityIndicator
-                        color={colors.BLUE}
-                        size={50}
-                        style={{marginTop: 10}}
-                      />
-                    ) : (
-                      <View
+                    <Text style={{color: colors.TEXT_COLOR}}>
+                      Help other technicians by letting us know a few
+                      information regarding equipment that you fixed.
+                    </Text>
+                    <View style={{width: width - 20}}>
+                      <TextInput
                         style={{
-                          ...flexCenter,
-                          flexDirection: 'row',
-                          marginTop: 10,
-                        }}>
-                        <Button
-                          title="Close"
-                          color={colors.RED}
-                          onPress={() => setShowProblemSolved(false)}
+                          ...commonInput,
+                        }}
+                        placeholder="Enter Serial Number"
+                        value={serialNumber}
+                        onChangeText={text => setSerialNumber(text)}
+                      />
+                      <TextInput
+                        style={{...commonInput}}
+                        placeholder="Enter Device Model"
+                        value={deviceModal}
+                        onChangeText={text => setDeviceModal(text)}
+                      />
+                      <TextInput
+                        style={{...commonInput}}
+                        placeholder="Enter estimated time used. ex: 1hr"
+                        value={estimatedTime}
+                        keyboardType="number-pad"
+                        onChangeText={text => setEstimatedTime(text)}
+                      />
+                      <Text style={{marginTop: 10}}>Spare parts used</Text>
+                      {sparePartsUsedList.map((item, index) => (
+                        <SparePartItem
+                          key={index}
+                          index={index}
+                          handleRemoveSparePart={handleRemoveSparePart}
+                          item={item}
+                          handleUpdateSparePart={handleUpdateSparePart}
                         />
-                        <View style={{marginLeft: 10}}>
+                      ))}
+                      <Pressable>
+                        <Text
+                          style={{color: colors.BLUE}}
+                          onPress={() => {
+                            setSparePartsUsedList([
+                              ...sparePartsUsedList,
+                              {model: '', name: '', _id: ''},
+                            ]);
+                          }}>
+                          Add spare part
+                        </Text>
+                      </Pressable>
+                      {isSubmittingTicket ? (
+                        <ActivityIndicator
+                          color={colors.BLUE}
+                          size={50}
+                          style={{marginTop: 10}}
+                        />
+                      ) : (
+                        <View
+                          style={{
+                            ...flexCenter,
+                            flexDirection: 'row',
+                            marginTop: 20,
+                          }}>
                           <Button
-                            title="Submit"
-                            onPress={() => handeSubmitProblemSolved()}
+                            title="Close"
+                            color={colors.RED}
+                            onPress={() => setShowProblemSolved(false)}
                           />
+                          <View style={{marginLeft: 10}}>
+                            <Button
+                              title="Submit"
+                              onPress={() => handeSubmitProblemSolved()}
+                            />
+                          </View>
                         </View>
-                      </View>
-                    )}
+                      )}
+                    </View>
                   </View>
                 </View>
               </View>
-            </View>
+            </ScrollView>
           </View>
         </View>
       </Modal>
