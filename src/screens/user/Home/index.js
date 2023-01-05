@@ -72,6 +72,16 @@ function Home({navigation}) {
                     <Icon name="user" size={30} color={colors.BLUE} />
                   </View>
                 </Pressable>
+                <View style={{flex: 1, paddingHorizontal: 10}}>
+                  <Text
+                    style={{
+                      color: colors.WHITE,
+                      fontSize: 16,
+                      fontWeight: '600',
+                    }}>
+                    MobileMERS
+                  </Text>
+                </View>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('SearchIssues')}>
                   <View>
@@ -85,11 +95,12 @@ function Home({navigation}) {
                   style={{
                     color: colors.WHITE,
                     fontSize: 16,
-                    fontWeight: '600',
+                    textAlign: 'center',
                   }}>
-                  MOBILE MERS
+                  Medical Equipment Repair System
                 </Text>
                 <Text
+                  numberOfLines={1}
                   style={{
                     color: colors.BLACK,
                     fontSize: 30,
