@@ -18,6 +18,7 @@ import {fetchDB} from '../../../actions/db';
 import LatestDeviceIssues from './latest-device-issues';
 import IssueCategories from './issue-categories/issueCategories';
 import {validateSelectedDevice} from '../../../helpers';
+import {fetchSerialNumbersSilent} from '../../../actions/serialNumbers';
 const {width} = Dimensions.get('window');
 function Home({navigation}) {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function Home({navigation}) {
 
   useEffect(() => {
     dispatch(fetchDB());
+    dispatch(fetchSerialNumbersSilent());
   }, []);
 
   useEffect(() => {
@@ -128,6 +130,30 @@ function Home({navigation}) {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
           <View style={{padding: 10, flex: 1}}>
+            <Pressable onPress={() => navigation.navigate('ChooseDevice')}>
+              {selectedDevice !== '' ? (
+                <View style={{...flexSpace, marginBottom: 15}}>
+                  <View>
+                    <Text style={{fontSize: 12, color: colors.TEXT_COLOR}}>
+                      Selected Device
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        color: colors.BLACK,
+                      }}>
+                      {db.db[selectedDevice]?.name}
+                    </Text>
+                  </View>
+                  <View>
+                    <Icon name="down" color={colors.BLACK} size={30} />
+                  </View>
+                </View>
+              ) : (
+                <Text>No selected device</Text>
+              )}
+            </Pressable>
             <IssueCategories navigation={navigation} />
             <Text style={{color: colors.ORANGE}}>LATEST ISSUES</Text>
             <LatestDeviceIssues navigation={navigation} />

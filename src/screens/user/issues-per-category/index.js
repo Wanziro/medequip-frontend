@@ -3,11 +3,13 @@ import {ScrollView, View, StyleSheet, Pressable, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 import colors from '../../../constants/colors';
 import {flexSpace} from '../../../constants/styles';
+import {validateSelectedDevice} from '../../../helpers';
 
 function IssuesPerCategory({navigation, route}) {
   const {categoryId, deviceId, categoryName} = route.params;
   const {db} = useSelector(state => state.db);
   const [results, setResults] = useState([]);
+  const {fullName, selectedDevice} = useSelector(state => state.user);
 
   useEffect(() => {
     setResults(db.filter(item => item._id == deviceId));
@@ -16,7 +18,8 @@ function IssuesPerCategory({navigation, route}) {
     <View style={{flex: 1, padding: 10}}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {results.length > 0 &&
-          results[0].deviceIssues.map(
+          validateSelectedDevice(db, selectedDevice) &&
+          results[selectedDevice].deviceIssues.map(
             (item, index) =>
               item.categoryId == categoryId && (
                 <Pressable

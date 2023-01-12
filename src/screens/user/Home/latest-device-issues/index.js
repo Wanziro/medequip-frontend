@@ -5,9 +5,11 @@ import DeviceLoader from './deviceLoader';
 import Icon from 'react-native-vector-icons/dist/AntDesign';
 import colors from '../../../../constants/colors';
 import {flexSpace} from '../../../../constants/styles';
+import {validateSelectedDevice} from '../../../../helpers';
 
 function LatestDeviceIssues({navigation}) {
   const {db, isLoading, loadingDbError} = useSelector(state => state.db);
+  const {fullName, selectedDevice} = useSelector(state => state.user);
   return (
     <View style={{marginTop: 15, flex: 1}}>
       {db.length === 0 && isLoading ? (
@@ -19,8 +21,8 @@ function LatestDeviceIssues({navigation}) {
             {loadingDbError}
           </Text>
         </View>
-      ) : db.length > 0 ? (
-        db[0].deviceIssues.map((item, index) => (
+      ) : db.length > 0 && validateSelectedDevice(db, selectedDevice) ? (
+        db[selectedDevice].deviceIssues.map((item, index) => (
           <Pressable
             key={index}
             onPress={() =>
