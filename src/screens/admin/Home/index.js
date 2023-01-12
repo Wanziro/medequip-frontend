@@ -11,6 +11,7 @@ function Home({navigation}) {
   const {devices} = useSelector(state => state.devices);
   const {users} = useSelector(state => state.appUsers);
   const {spareparts} = useSelector(state => state.spareparts);
+  const {serialNumbers} = useSelector(state => state.serialNumbers);
 
   const adminMenuList = [
     {
@@ -27,6 +28,11 @@ function Home({navigation}) {
       title: 'Spare Parts',
       size: spareparts.length,
       routeName: 'SpareParts',
+    },
+    {
+      title: 'Serial Numbers',
+      size: serialNumbers.length,
+      routeName: 'SerialNumbers',
     },
     {
       title: 'Reports',

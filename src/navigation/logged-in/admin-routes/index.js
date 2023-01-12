@@ -32,6 +32,9 @@ import Preview from '../../../screens/admin/reports/preview';
 import SpareParts from '../../../screens/admin/spare-parts';
 import AddSparePart from '../../../screens/admin/spare-parts/add-new';
 import EditSparePart from '../../../screens/admin/spare-parts/edit-spare-part';
+import SerialNumbers from '../../../screens/admin/serial-numbers';
+import AddSerialNumber from '../../../screens/admin/serial-numbers/add-new';
+import EditSerialNumber from '../../../screens/admin/serial-numbers/edit-serial-number';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -185,7 +188,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
-
         <Stack.Screen
           name="ChangePassword"
           component={ChangePassword}
@@ -235,7 +237,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
-
         <Stack.Screen
           name="DeviceIssues"
           component={DeviceIssues}
@@ -269,7 +270,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           })}
         />
-
         <Stack.Screen
           name="TroubleshootingSteps"
           component={TroubleshootingSteps}
@@ -305,7 +305,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           })}
         />
-
         <Stack.Screen
           name="AddTroubleshootingStep"
           component={AddTroubleshootingStep}
@@ -315,7 +314,6 @@ const AdminRoutes = () => {
             headerShadowVisible: false,
           }}
         />
-
         <Stack.Screen
           name="EditStep"
           component={EditStep}
@@ -325,7 +323,6 @@ const AdminRoutes = () => {
             headerShadowVisible: false,
           }}
         />
-
         <Stack.Screen
           name="EditStepItem"
           component={EditStepItem}
@@ -335,7 +332,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
-
         <Stack.Screen
           name="AddDeviceIssue"
           component={AddDeviceIssue}
@@ -345,7 +341,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
-
         <Stack.Screen
           name="Users"
           component={Users}
@@ -362,7 +357,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           })}
         />
-
         <Stack.Screen
           name="AddUser"
           component={AddUser}
@@ -372,7 +366,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
-
         <Stack.Screen
           name="Reports"
           component={Reports}
@@ -391,7 +384,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
-
         <Stack.Screen
           name="SpareParts"
           component={SpareParts}
@@ -408,7 +400,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           })}
         />
-
         <Stack.Screen
           name="AddSparePart"
           component={AddSparePart}
@@ -418,7 +409,6 @@ const AdminRoutes = () => {
             headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
-
         <Stack.Screen
           name="EditSparePart"
           component={EditSparePart}
@@ -429,6 +419,40 @@ const AdminRoutes = () => {
           }}
         />
 
+        <Stack.Screen
+          name="SerialNumbers"
+          component={SerialNumbers}
+          options={({route, navigation}) => ({
+            headerRight: () => (
+              <Pressable onPress={() => navigation.navigate('AddSerialNumber')}>
+                <View style={{paddingRight: 10}}>
+                  <Icon3 name="plus" color={colors.WHITE} size={30} />
+                </View>
+              </Pressable>
+            ),
+            title: 'Serial Numbers',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          })}
+        />
+        <Stack.Screen
+          name="AddSerialNumber"
+          component={AddSerialNumber}
+          options={{
+            title: 'Add Serial Number',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          }}
+        />
+        <Stack.Screen
+          name="EditSerialNumber"
+          component={EditSerialNumber}
+          options={{
+            title: 'Edit Serial Number',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
+          }}
+        />
         {/*  <Stack.Screen
           name="EditProduct"
           component={EditProduct}

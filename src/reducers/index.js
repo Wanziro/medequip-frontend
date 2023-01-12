@@ -9,6 +9,7 @@ import keywords from './keywords';
 import messages from './messages';
 import rooms from './rooms';
 import spareparts from './spareparts';
+import serialNumbers from './serialNumbers';
 const rootReducer = combineReducers({
   user,
   devices,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   messages,
   rooms,
   spareparts,
+  serialNumbers,
 });
 
 export default rootReducer;
