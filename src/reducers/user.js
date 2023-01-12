@@ -6,6 +6,7 @@ import {
   SET_USER_ID,
   SET_USER_COMPANY_NAME,
   RESET_USER,
+  SET_SELECTED_DEVICE,
 } from '../actions/user';
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   email: '',
   role: '',
   companyName: '',
+  selectedDevice: '',
 };
 
 const user = (state = initialState, action) => {
@@ -32,6 +34,8 @@ const user = (state = initialState, action) => {
       return {...state, token: action.payload};
     case SET_USER_COMPANY_NAME:
       return {...state, companyName: action.payload};
+    case SET_SELECTED_DEVICE:
+      return {...state, selectedDevice: action.payload};
     case RESET_USER:
       return initialState;
     default:

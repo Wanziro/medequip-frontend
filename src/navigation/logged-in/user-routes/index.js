@@ -21,6 +21,7 @@ import IssuesPerCategory from '../../../screens/user/issues-per-category';
 import UsersList from '../../../screens/user/users-list';
 import ChattHeader from '../../../screens/user/chat-messages/chatt-header';
 import ChattMessages from '../../../screens/user/chat-messages';
+import ChooseDevice from '../../../screens/user/choose-device';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -160,7 +161,6 @@ const UserRoutes = () => {
           component={HomeTabs}
           options={{headerShown: false}}
         />
-
         <Stack.Screen
           name="ChangePassword"
           component={ChangePassword}
@@ -233,6 +233,15 @@ const UserRoutes = () => {
             title: '',
             headerTintColor: colors.WHITE,
           })}
+        />
+        <Stack.Screen
+          name="ChooseDevice"
+          component={ChooseDevice}
+          options={{
+            title: 'Select Device',
+            headerStyle: {backgroundColor: colors.BLUE},
+            headerTintColor: colors.WHITE,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -4,6 +4,7 @@ export const SET_USER_TOKEN = 'SET_USER_TOKEN';
 export const SET_USER_ROLE = 'SET_USER_ROLE';
 export const SET_USER_ID = 'SET_USER_ID';
 export const SET_USER_COMPANY_NAME = 'SET_USER_COMPANY_NAME';
+export const SET_SELECTED_DEVICE = 'SET_SELECTED_DEVICE';
 export const RESET_USER = 'RESET_USER';
 
 export const setUserNames = names => dispatch => {
@@ -41,6 +42,13 @@ export const setUserCompanyName = value => dispatch => {
 export const setUserId = id => dispatch => {
   dispatch({
     type: SET_USER_ID,
+    payload: id,
+  });
+};
+
+export const setSelectedDevice = id => dispatch => {
+  dispatch({
+    type: SET_SELECTED_DEVICE,
     payload: id,
   });
 };

@@ -17,11 +17,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import {fetchDB} from '../../../actions/db';
 import LatestDeviceIssues from './latest-device-issues';
 import IssueCategories from './issue-categories/issueCategories';
+import {validateSelectedDevice} from '../../../helpers';
 const {width} = Dimensions.get('window');
 function Home({navigation}) {
   const dispatch = useDispatch();
-  const {fullName} = useSelector(state => state.user);
+  const {fullName, selectedDevice} = useSelector(state => state.user);
   const [refreshing, setRefreshing] = useState(false);
+  const db = useSelector(state => state.db);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -34,6 +36,14 @@ function Home({navigation}) {
   useEffect(() => {
     dispatch(fetchDB());
   }, []);
+
+  useEffect(() => {
+    if (!db.isLoading) {
+      if (!validateSelectedDevice(db.db, selectedDevice)) {
+        navigation.navigate('ChooseDevice');
+      }
+    }
+  }, [db.isLoading]);
 
   return (
     <>
@@ -119,7 +129,7 @@ function Home({navigation}) {
           }>
           <View style={{padding: 10, flex: 1}}>
             <IssueCategories navigation={navigation} />
-            <Text style={{color: colors.ORANGE}}>LATEST DEVICE ISSUES</Text>
+            <Text style={{color: colors.ORANGE}}>LATEST ISSUES</Text>
             <LatestDeviceIssues navigation={navigation} />
           </View>
         </ScrollView>

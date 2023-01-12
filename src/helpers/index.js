@@ -60,3 +60,19 @@ export const getRandomPositionOfAnArray = arraySize => {
   const min = 0;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+export const validateSelectedDevice = (allDevices, index) => {
+  try {
+    if (index !== '') {
+      if (Number(index) < allDevices.length) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  } catch (error) {
+    console.log(error);
+    toastMessage('error', 'Please choose a device');
+    return false;
+  }
+};
