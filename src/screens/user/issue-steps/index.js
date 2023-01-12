@@ -40,7 +40,6 @@ function IssueSteps({navigation, route}) {
   const [isSubmittingTicket, setIsSubmittingTecket] = useState(false);
   const [serialNumber, setSerialNumber] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
-  const [estimatedPrice, setEstimatedPrice] = useState('');
 
   const [sparePartsUsedList, setSparePartsUsedList] = useState([]);
 
@@ -151,8 +150,6 @@ function IssueSteps({navigation, route}) {
       serialNumber === 'Choose Serial Number' ||
       deviceModal.trim() === '' ||
       estimatedTime.trim() === ''
-      // ||
-      // estimatedPrice.trim() === ''
     ) {
       Dialog.show({
         type: ALERT_TYPE.DANGER,
@@ -166,7 +163,6 @@ function IssueSteps({navigation, route}) {
       Axios.post(app.backendUrl + '/tickets/solved/', {
         serialNumber,
         estimatedTime,
-        // estimatedPrice,
         sparePartsUsedList,
         deviceModal,
         token,
@@ -179,7 +175,6 @@ function IssueSteps({navigation, route}) {
           setDescription('');
           setSerialNumber('');
           setEstimatedTime('');
-          setEstimatedPrice('');
           Dialog.show({
             type: ALERT_TYPE.SUCCESS,
             title: 'Success',

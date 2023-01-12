@@ -22,6 +22,7 @@ import UsersList from '../../../screens/user/users-list';
 import ChattHeader from '../../../screens/user/chat-messages/chatt-header';
 import ChattMessages from '../../../screens/user/chat-messages';
 import ChooseDevice from '../../../screens/user/choose-device';
+import Preview from '../../../screens/admin/reports/preview';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -241,6 +242,15 @@ const UserRoutes = () => {
             title: 'Select Device',
             headerStyle: {backgroundColor: colors.BLUE},
             headerTintColor: colors.WHITE,
+          }}
+        />
+        <Stack.Screen
+          name="Preview"
+          component={Preview}
+          options={{
+            title: 'PDF',
+            headerTintColor: colors.WHITE,
+            headerStyle: {backgroundColor: colors.BLUE},
           }}
         />
       </Stack.Navigator>
