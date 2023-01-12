@@ -20,9 +20,12 @@ import Modal from 'react-native-modal';
 import Axios from 'axios';
 import SparePartItem from './sparepartItem';
 import {fetchSparePartsSilent} from '../../../actions/spareparts';
+import {fetchSerialNumbersSilent} from '../../../actions/serialNumbers';
+import {Picker} from '@react-native-picker/picker';
 const {width, height} = Dimensions.get('window');
 function IssueSteps({navigation, route}) {
   const dispatch = useDispatch();
+  const {serialNumbers} = useSelector(state => state.serialNumbers);
   const {db} = useSelector(state => state.db);
   const {token} = useSelector(state => state.user);
   const {deviceId, issueId} = route.params;
@@ -63,6 +66,7 @@ function IssueSteps({navigation, route}) {
       setIssueSteps(steps);
     }
     dispatch(fetchSparePartsSilent());
+    dispatch(fetchSerialNumbersSilent());
   }, [deviceId, issueId]);
 
   useEffect(() => {
@@ -144,6 +148,7 @@ function IssueSteps({navigation, route}) {
   const handeSubmitProblemSolved = () => {
     if (
       serialNumber.trim() === '' ||
+      serialNumber === 'Choose Serial Number' ||
       deviceModal.trim() === '' ||
       estimatedTime.trim() === ''
       // ||
@@ -458,14 +463,23 @@ function IssueSteps({navigation, route}) {
                       information regarding equipment that you fixed.
                     </Text>
                     <View style={{width: width - 20}}>
-                      <TextInput
-                        style={{
-                          ...commonInput,
-                        }}
-                        placeholder="Enter Serial Number"
-                        value={serialNumber}
-                        onChangeText={text => setSerialNumber(text)}
-                      />
+                      <Picker
+                        selectedValue={serialNumber}
+                        onValueChange={(itemValue, itemIndex) =>
+                          setSerialNumber(itemValue)
+                        }
+                        style={{...commonInput}}>
+                        {[{sn: 'Choose Serial Number'}, ...serialNumbers].map(
+                          (model, i) => (
+                            <Picker.Item
+                              key={i}
+                              label={model.sn}
+                              value={model.sn}
+                            />
+                          ),
+                        )}
+                      </Picker>
+
                       <TextInput
                         style={{...commonInput}}
                         placeholder="Enter Device Model"
