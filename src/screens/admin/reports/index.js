@@ -144,9 +144,9 @@ function Reports({navigation}) {
         <td>${res.data.solved[i].device.name}</td>
         <td>${res.data.solved[i].estimatedTime}</td>
         <td>${res.data.solved[i].estimatedPrice} RWF</td>
-        <td>${res.data.solved[i].issue.title}</td>
-        <td>${res.data.solved[i].user.email}</td>
-        <td>${res.data.solved[i].user.companyName}</td>
+        <td>${res.data.solved[i]?.issue?.title}</td>
+        <td>${res.data.solved[i]?.user?.email}</td>
+        <td>${res.data.solved[i]?.user?.companyName}</td>
         <td>${new Date(res.data.solved[i].createdAt).toLocaleString()}</td>
         </tr>
         `;
